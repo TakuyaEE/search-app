@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  flask:
+    build:
+      context: .
+      args:
+        project_directory: "/search-app/"
+    ports:
+      - "5000:5000"
+    volumes:
+      - "../search-app/"
+    tty: true
+    environment:
+      TZ: Asia/Tokyo
+      FLASK_ENV: "development"
+    command: flask run --host 0.0.0.0 --port 5000
