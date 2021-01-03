@@ -16,7 +16,7 @@ app.register_blueprint(inquiry)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('hellowork.html')
 
 @app.route('/hellowork')
 def hellowork():
