@@ -18,9 +18,9 @@ q = Queue(connection=conn)
 
 @search_hellowork.route('/results', methods=['POST'])
 def worker():
-    background_process = q.enqueue(background_process, '引数１')
+    background_process = q.enqueue(results)
     return background_process
-def results():
+def results(name):
     if request.method == 'POST':
         # POSTから受け取り
         age = int(request.form.get('age'))
@@ -232,7 +232,7 @@ def results():
             df_values[i][0] = '<a href="' + url_list[i] + '">' + df_values[i][0]  + '</a>'
             i += 1
 
-        return render_template('results.html', df_values = df_values, csv_path = csv_path, today = today)
+        return name * 10, render_template('results.html', df_values = df_values, csv_path = csv_path, today = today)
 
     else:
         return redirect('hellowork.html')
