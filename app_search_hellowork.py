@@ -10,10 +10,17 @@ import csv
 import pandas as pd
 import datetime as dt
 import uuid
+from rq import Queue
+from worker import conn
+from bottle import route, run
 
 search_hellowork = Blueprint('app_search_hellowork', __name__)
+q = Queue(connection=conn)
 
 @search_hellowork.route('/results', methods=['POST'])
+def worker():
+    background_process = q.enqueue(background_process, '引数１')
+    return background_process
 def results():
     if request.method == 'POST':
         # POSTから受け取り
