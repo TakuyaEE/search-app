@@ -1,0 +1,13 @@
+selectの選択個数制限js
+https://lmn-blog.com/list_box01/
+flask
+https://www.youtube.com/watch?v=jP7p2okKdJA&ab_channel=%E3%81%AF%E3%82%84%E3%81%9F%E3%81%99%2FPython%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%8B%E3%82%A2
+
+pip 使えないとき
+python -m pip install 
+
+heroku deploy
+python -m pip freeze > .\requirements.txt
+git add .
+git commit -am "make it better"
+git push heroku master

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block body %}
+	
+	<div class="pt-5">
+		<h2 class="float-left m-4">検索結果</h2>
+		<a href="{{csv_path}}" download="ハローワーク求人情報_{{today}}.csv" type="button" class="btn float-right m-4" style="background-color:#9099a2;color:white;">CSVでダウンロード</a>
+	</div>
+
+	<div class="d-block table-responsive">
+		<table class="table table-bordered table-hover table-sm table-striped">
+			<thead>
+				<tr>
+					<th>求人番号</th>
+					<th data-sorter="false">職種</th>
+					<th data-sorter="false">仕事の内容</th>
+					<th>賃金</th>
+					<th data-sorter="false">就業時間</th>
+					<th data-sorter="false">休日</th>
+					<th data-sorter="false">年齢</th>
+					<th data-sorter="false">事業所名</th>
+					<th data-sorter="false">就業場所</th>
+				</tr>
+			</thead> 
+			<tbody class="table_body">
+				{%- for i in df_values %}
+				<tr>{% for j in i %}<td>{{ j | safe }}</td>{% endfor %}</tr>
+				{%- endfor %}
+			</tbody>
+		</table>
+	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.1/js/jquery.tablesorter.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('#fav-table').tablesorter();
+		});
+	</script>
+{% endblock %}

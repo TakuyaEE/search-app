@@ -1,0 +1,558 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<script type=text/javascript src="{{ url_for('static', filename='js/hellowork.js') }}"></script>
+<div class="font-weight-bold lead text-center d-none" id="information"> 
+    <p class="pt-5 mt-5">検索中です</P>
+    <p>自動で検索結果ページが開かれるので、そのままおまちください。</P>
+    <p>※検索条件によって時間がかかることがあります。</P>
+    <p class="py-3 h6">ブロック崩し 左：← 右：→</P>
+</div>
+
+<div class="container">
+    <form action="/results" method="POST" name="form" onsubmit="conditions_send()">
+        <div class="font-weight-bold pt-5 pb-2 mt-5 text-center">
+            <h2>ハローワーク求人情報検索</h2>
+            <p class="lead">検索条件を入力してください</p>
+        </div>
+        <div>
+
+            <div class="form-group">
+                <h6 class="font-weight-bold">年齢<span class='badge badge-danger ml-2'>必須</span></h6>
+                <input type="text" name="age" class="form-control" id="exampleFormControlInput1" placeholder="例）25" required> 
+            </div>
+            <hr class="mb-3">
+            <h6 class="mt-3 font-weight-bold">就業場所　<span class="font-weight-normal">(一度に検索できるのは1都県のみです。市区町村は、コントロールを押しながら選択すると5つまで選択できます)</span><span class='badge badge-danger ml-2'>必須</span></h6>
+            <div class="form-row">
+                
+                <div class="col-m-md-auto">
+                    <label for="exampleFormControlSelect2">茨城県</label>
+                    <select style="width:175px;" name="place" multiple class="form-control select5 ibaraki" id="exampleFormControlSelect2" size="7">
+                        <option value="08201">水戸市</option>
+                        <option value="08202">日立市</option>
+                        <option value="08203">土浦市</option>
+                        <option value="08204">古河市</option>
+                        <option value="08205">石岡市</option>
+                        <option value="08207">結城市</option>
+                        <option value="08208">龍ケ崎市</option>
+                        <option value="08210">下妻市</option>
+                        <option value="08211">常総市</option>
+                        <option value="08212">常陸太田市</option>
+                        <option value="08214">高萩市</option>
+                        <option value="08215">北茨城市</option>
+                        <option value="08216">笠間市</option>
+                        <option value="08217">取手市</option>
+                        <option value="08219">牛久市</option>
+                        <option value="08220">つくば市</option>
+                        <option value="08221">ひたちなか市</option>
+                        <option value="08222">鹿嶋市</option>
+                        <option value="08223">潮来市</option>
+                        <option value="08224">守谷市</option>
+                        <option value="08225">常陸大宮市</option>
+                        <option value="08226">那珂市</option>
+                        <option value="08227">筑西市</option>
+                        <option value="08228">坂東市</option>
+                        <option value="08229">稲敷市</option>
+                        <option value="08230">かすみがうら市</option>
+                        <option value="08231">桜川市</option>
+                        <option value="08232">神栖市</option>
+                        <option value="08233">行方市</option>
+                        <option value="08234">鉾田市</option>
+                        <option value="08235">つくばみらい市</option>
+                        <option value="08236">小美玉市</option>
+                        <option value="08302">東茨城郡茨城町</option>
+                        <option value="08309">東茨城郡大洗町</option>
+                        <option value="08310">東茨城郡城里町</option>
+                        <option value="08341">那珂郡東海村</option>
+                        <option value="08364">久慈郡大子町</option>
+                        <option value="08442">稲敷郡美浦村</option>
+                        <option value="08443">稲敷郡阿見町</option>
+                        <option value="08447">稲敷郡河内町</option>
+                        <option value="08521">結城郡八千代町</option>
+                        <option value="08542">猿島郡五霞町</option>
+                        <option value="08546">猿島郡境町</option>
+                        <option value="08564">北相馬郡利根町</option>
+                    </select> 
+                </div>
+
+                <div class="col-m-md-auto">
+                    <label for="exampleFormControlSelect2">東京都</label>
+                    <select style="width:175px;" name="place" multiple class="form-control select5 tokyo" id="exampleFormControlSelect2" size="7">
+                        <option value="13101">千代田区</option>
+                        <option value="13102">中央区</option>
+                        <option value="13103">港区</option>
+                        <option value="13104">新宿区</option>
+                        <option value="13105">文京区</option>
+                        <option value="13106">台東区</option>
+                        <option value="13107">墨田区</option>
+                        <option value="13108">江東区</option>
+                        <option value="13109">品川区</option>
+                        <option value="13110">目黒区</option>
+                        <option value="13111">大田区</option>
+                        <option value="13112">世田谷区</option>
+                        <option value="13113">渋谷区</option>
+                        <option value="13114">中野区</option>
+                        <option value="13115">杉並区</option>
+                        <option value="13116">豊島区</option>
+                        <option value="13117">北区</option>
+                        <option value="13118">荒川区</option>
+                        <option value="13119">板橋区</option>
+                        <option value="13120">練馬区</option>
+                        <option value="13121">足立区</option>
+                        <option value="13122">葛飾区</option>
+                        <option value="13123">江戸川区</option>
+                        <option value="13201">八王子市</option>
+                        <option value="13202">立川市</option>
+                        <option value="13203">武蔵野市</option>
+                        <option value="13204">三鷹市</option>
+                        <option value="13205">青梅市</option>
+                        <option value="13206">府中市</option>
+                        <option value="13207">昭島市</option>
+                        <option value="13208">調布市</option>
+                        <option value="13209">町田市</option>
+                        <option value="13210">小金井市</option>
+                        <option value="13211">小平市</option>
+                        <option value="13212">日野市</option>
+                        <option value="13213">東村山市</option>
+                        <option value="13214">国分寺市</option>
+                        <option value="13215">国立市</option>
+                        <option value="13218">福生市</option>
+                        <option value="13219">狛江市</option>
+                        <option value="13220">東大和市</option>
+                        <option value="13221">清瀬市</option>
+                        <option value="13222">東久留米市</option>
+                        <option value="13223">武蔵村山市</option>
+                        <option value="13224">多摩市</option>
+                        <option value="13225">稲城市</option>
+                        <option value="13227">羽村市</option>
+                        <option value="13228">あきる野市</option>
+                        <option value="13229">西東京市</option>
+                        <option value="13303">西多摩郡瑞穂町</option>
+                        <option value="13305">西多摩郡日の出町</option>
+                        <option value="13307">西多摩郡檜原村</option>
+                        <option value="13308">西多摩郡奥多摩町</option>
+                        <option value="13361">大島町</option>
+                        <option value="13362">利島村</option>
+                        <option value="13363">新島村</option>
+                        <option value="13364">神津島村</option>
+                        <option value="13381">三宅島三宅村</option>
+                        <option value="13382">御蔵島村</option>
+                        <option value="13401">八丈島八丈町</option>
+                        <option value="13402">青ヶ島村</option>
+                        <option value="13421">小笠原村</option>
+                    </select>
+                </div>
+
+                <div class="col-m-md-auto">
+                    <label for="exampleFormControlSelect2">千葉県</label>
+                    <select style="width:175px;" name="place" multiple class="form-control select5 chiba" id="exampleFormControlSelect2" size="7">
+                        <option value="12101">千葉市中央区</option>
+                        <option value="12102">千葉市花見川区</option>
+                        <option value="12103">千葉市稲毛区</option>
+                        <option value="12104">千葉市若葉区</option>
+                        <option value="12105">千葉市緑区</option>
+                        <option value="12106">千葉市美浜区</option>
+                        <option value="12202">銚子市</option>
+                        <option value="12203">市川市</option>
+                        <option value="12204">船橋市</option>
+                        <option value="12205">館山市</option>
+                        <option value="12206">木更津市</option>
+                        <option value="12207">松戸市</option>
+                        <option value="12208">野田市</option>
+                        <option value="12210">茂原市</option>
+                        <option value="12211">成田市</option>
+                        <option value="12212">佐倉市</option>
+                        <option value="12213">東金市</option>
+                        <option value="12215">旭市</option>
+                        <option value="12216">習志野市</option>
+                        <option value="12217">柏市</option>
+                        <option value="12218">勝浦市</option>
+                        <option value="12219">市原市</option>
+                        <option value="12220">流山市</option>
+                        <option value="12221">八千代市</option>
+                        <option value="12222">我孫子市</option>
+                        <option value="12223">鴨川市</option>
+                        <option value="12224">鎌ケ谷市</option>
+                        <option value="12225">君津市</option>
+                        <option value="12226">富津市</option>
+                        <option value="12227">浦安市</option>
+                        <option value="12228">四街道市</option>
+                        <option value="12229">袖ケ浦市</option>
+                        <option value="12230">八街市</option>
+                        <option value="12231">印西市</option>
+                        <option value="12232">白井市</option>
+                        <option value="12233">富里市</option>
+                        <option value="12234">南房総市</option>
+                        <option value="12235">匝瑳市</option>
+                        <option value="12236">香取市</option>
+                        <option value="12237">山武市</option>
+                        <option value="12238">いすみ市</option>
+                        <option value="12239">大網白里市</option>
+                        <option value="12322">印旛郡酒々井町</option>
+                        <option value="12329">印旛郡栄町</option>
+                        <option value="12342">香取郡神崎町</option>
+                        <option value="12347">香取郡多古町</option>
+                        <option value="12349">香取郡東庄町</option>
+                        <option value="12403">山武郡九十九里町</option>
+                        <option value="12409">山武郡芝山町</option>
+                        <option value="12410">山武郡横芝光町</option>
+                        <option value="12421">長生郡一宮町</option>
+                        <option value="12422">長生郡睦沢町</option>
+                        <option value="12423">長生郡長生村</option>
+                        <option value="12424">長生郡白子町</option>
+                        <option value="12426">長生郡長柄町</option>
+                        <option value="12427">長生郡長南町</option>
+                        <option value="12441">夷隅郡大多喜町</option>
+                        <option value="12443">夷隅郡御宿町</option>
+                        <option value="12463">安房郡鋸南町</option>
+                    </select>
+                </div>
+
+                <div class="col-m-md-auto">
+                    <label for="exampleFormControlSelect2">神奈川県</label>
+                    <select style="width:175px;" name="place" multiple class="form-control select5 kanagawa" id="exampleFormControlSelect2" size="7">
+                        <option value="14101">横浜市鶴見区</option>
+                        <option value="14102">横浜市神奈川区</option>
+                        <option value="14103">横浜市西区</option>
+                        <option value="14104">横浜市中区</option>
+                        <option value="14105">横浜市南区</option>
+                        <option value="14106">横浜市保土ケ谷区</option>
+                        <option value="14107">横浜市磯子区</option>
+                        <option value="14108">横浜市金沢区</option>
+                        <option value="14109">横浜市港北区</option>
+                        <option value="14110">横浜市戸塚区</option>
+                        <option value="14111">横浜市港南区</option>
+                        <option value="14112">横浜市旭区</option>
+                        <option value="14113">横浜市緑区</option>
+                        <option value="14114">横浜市瀬谷区</option>
+                        <option value="14115">横浜市栄区</option>
+                        <option value="14116">横浜市泉区</option>
+                        <option value="14117">横浜市青葉区</option>
+                        <option value="14118">横浜市都筑区</option>
+                        <option value="14131">川崎市川崎区</option>
+                        <option value="14132">川崎市幸区</option>
+                        <option value="14133">川崎市中原区</option>
+                        <option value="14134">川崎市高津区</option>
+                        <option value="14135">川崎市多摩区</option>
+                        <option value="14136">川崎市宮前区</option>
+                        <option value="14137">川崎市麻生区</option>
+                        <option value="14151">相模原市緑区</option>
+                        <option value="14152">相模原市中央区</option>
+                        <option value="14153">相模原市南区</option>
+                        <option value="14201">横須賀市</option>
+                        <option value="14203">平塚市</option>
+                        <option value="14204">鎌倉市</option>
+                        <option value="14205">藤沢市</option>
+                        <option value="14206">小田原市</option>
+                        <option value="14207">茅ヶ崎市</option>
+                        <option value="14208">逗子市</option>
+                        <option value="14210">三浦市</option>
+                        <option value="14211">秦野市</option>
+                        <option value="14212">厚木市</option>
+                        <option value="14213">大和市</option>
+                        <option value="14214">伊勢原市</option>
+                        <option value="14215">海老名市</option>
+                        <option value="14216">座間市</option>
+                        <option value="14217">南足柄市</option>
+                        <option value="14218">綾瀬市</option>
+                        <option value="14301">三浦郡葉山町</option>
+                        <option value="14321">高座郡寒川町</option>
+                        <option value="14341">中郡大磯町</option>
+                        <option value="14342">中郡二宮町</option>
+                        <option value="14361">足柄上郡中井町</option>
+                        <option value="14362">足柄上郡大井町</option>
+                        <option value="14363">足柄上郡松田町</option>
+                        <option value="14364">足柄上郡山北町</option>
+                        <option value="14366">足柄上郡開成町</option>
+                        <option value="14382">足柄下郡箱根町</option>
+                        <option value="14383">足柄下郡真鶴町</option>
+                        <option value="14384">足柄下郡湯河原町</option>
+                        <option value="14401">愛甲郡愛川町</option>
+                        <option value="14402">愛甲郡清川村</option>
+                    </select>
+                </div>
+
+                <div class="col-m-md-auto">
+                    <label for="exampleFormControlSelect2">埼玉県</label>
+                    <select style="width:175px;" name="place" multiple class="form-control select5 saitama" id="exampleFormControlSelect2" size="7">
+                        <option value="11101">さいたま市西区</option>
+                        <option value="11102">さいたま市北区</option>
+                        <option value="11103">さいたま市大宮区</option>
+                        <option value="11104">さいたま市見沼区</option>
+                        <option value="11105">さいたま市中央区</option>
+                        <option value="11106">さいたま市桜区</option>
+                        <option value="11107">さいたま市浦和区</option>
+                        <option value="11108">さいたま市南区</option>
+                        <option value="11109">さいたま市緑区</option>
+                        <option value="11110">さいたま市岩槻区</option>
+                        <option value="11201">川越市</option>
+                        <option value="11202">熊谷市</option>
+                        <option value="11203">川口市</option>
+                        <option value="11206">行田市</option>
+                        <option value="11207">秩父市</option>
+                        <option value="11208">所沢市</option>
+                        <option value="11209">飯能市</option>
+                        <option value="11210">加須市</option>
+                        <option value="11211">本庄市</option>
+                        <option value="11212">東松山市</option>
+                        <option value="11214">春日部市</option>
+                        <option value="11215">狭山市</option>
+                        <option value="11216">羽生市</option>
+                        <option value="11217">鴻巣市</option>
+                        <option value="11218">深谷市</option>
+                        <option value="11219">上尾市</option>
+                        <option value="11221">草加市</option>
+                        <option value="11222">越谷市</option>
+                        <option value="11223">蕨市</option>
+                        <option value="11224">戸田市</option>
+                        <option value="11225">入間市</option>
+                        <option value="11227">朝霞市</option>
+                        <option value="11228">志木市</option>
+                        <option value="11229">和光市</option>
+                        <option value="11230">新座市</option>
+                        <option value="11231">桶川市</option>
+                        <option value="11232">久喜市</option>
+                        <option value="11233">北本市</option>
+                        <option value="11234">八潮市</option>
+                        <option value="11235">富士見市</option>
+                        <option value="11237">三郷市</option>
+                        <option value="11238">蓮田市</option>
+                        <option value="11239">坂戸市</option>
+                        <option value="11240">幸手市</option>
+                        <option value="11241">鶴ヶ島市</option>
+                        <option value="11242">日高市</option>
+                        <option value="11243">吉川市</option>
+                        <option value="11245">ふじみ野市</option>
+                        <option value="11246">白岡市</option>
+                        <option value="11301">北足立郡伊奈町</option>
+                        <option value="11324">入間郡三芳町</option>
+                        <option value="11326">入間郡毛呂山町</option>
+                        <option value="11327">入間郡越生町</option>
+                        <option value="11341">比企郡滑川町</option>
+                        <option value="11342">比企郡嵐山町</option>
+                        <option value="11343">比企郡小川町</option>
+                        <option value="11346">比企郡川島町</option>
+                        <option value="11347">比企郡吉見町</option>
+                        <option value="11348">比企郡鳩山町</option>
+                        <option value="11349">比企郡ときがわ町</option>
+                        <option value="11361">秩父郡横瀬町</option>
+                        <option value="11362">秩父郡皆野町</option>
+                        <option value="11363">秩父郡長瀞町</option>
+                        <option value="11365">秩父郡小鹿野町</option>
+                        <option value="11369">秩父郡東秩父村</option>
+                        <option value="11381">児玉郡美里町</option>
+                        <option value="11383">児玉郡神川町</option>
+                        <option value="11385">児玉郡上里町</option>
+                        <option value="11408">大里郡寄居町</option>
+                        <option value="11442">南埼玉郡宮代町</option>
+                        <option value="11464">北葛飾郡杉戸町</option>
+                        <option value="11465">北葛飾郡松伏町</option>
+                    </select>
+                </div>
+
+
+
+                <div class="col-m-md-auto">
+                    <label for="exampleFormControlSelect2">栃木県</label>
+                    <select style="width:175px;" name="place" multiple class="form-control select5 tochigi" id="exampleFormControlSelect2" size="7">
+                        <option value="09201">宇都宮市</option>
+                        <option value="09202">足利市</option>
+                        <option value="09203">栃木市</option>
+                        <option value="09204">佐野市</option>
+                        <option value="09205">鹿沼市</option>
+                        <option value="09206">日光市</option>
+                        <option value="09208">小山市</option>
+                        <option value="09209">真岡市</option>
+                        <option value="09210">大田原市</option>
+                        <option value="09211">矢板市</option>
+                        <option value="09213">那須塩原市</option>
+                        <option value="09214">さくら市</option>
+                        <option value="09215">那須烏山市</option>
+                        <option value="09216">下野市</option>
+                        <option value="09301">河内郡上三川町</option>
+                        <option value="09342">芳賀郡益子町</option>
+                        <option value="09343">芳賀郡茂木町</option>
+                        <option value="09344">芳賀郡市貝町</option>
+                        <option value="09345">芳賀郡芳賀町</option>
+                        <option value="09361">下都賀郡壬生町</option>
+                        <option value="09364">下都賀郡野木町</option>
+                        <option value="09384">塩谷郡塩谷町</option>
+                        <option value="09386">塩谷郡高根沢町</option>
+                        <option value="09407">那須郡那須町</option>
+                        <option value="09411">那須郡那珂川町</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <hr class="mb-3">
+                <h6 class="mt-3 font-weight-bold">職業分類　<span class="font-weight-normal">(コントロールを押しながら選択すると3つまで選択できます)</span><span class='badge badge-danger ml-2'>必須</span></h6>
+                <div class="form-group">
+                    <select name="classfication" multiple class="form-control select3" id="exampleFormControlSelect2" required>
+                        <option value="101">システムコンサルタント</option>
+                        <option value="102">システム設計技術者</option>
+                        <option value="103">情報処理プロジェクトマネージャ</option>
+                        <option value="10401">ソフトウェア開発技術者（WEB・オープン系）</option>
+                        <option value="10402">ソフトウェア開発技術者（組み込み・制御系）</option>
+                        <option value="10403">ソフトウェア開発技術者（汎用機系）</option>
+                        <option value="10404">プログラマー</option>
+                        <option value="10499">他に分類されないソフトウェア開発技術者</option>
+                        <option value="105">システム運用管理者</option>
+                        <option value="106">通信ネットワーク技術者</option>
+                        <option value="109">その他の情報処理・通信技術者</option>
+                    </select>
+            </div>
+
+            <hr class="mb-3">
+            <h6 class="mt-3 font-weight-bold">フリーワード　<span class="font-weight-normal">（複数ある場合は「スペース」で区切って入力してください ※アルファベットも全角で入力してください)</span></h6>
+            <div class="form-group">
+                <input type="text" name="free_word" class="form-control" id="exampleFormControlInput1" placeholder="例）未経験　Ｊａｖａ" value="">
+            </div>
+            <hr class="mb-3">
+        </div>
+        <button class="mb-3 btn  btn-lg btn-block" style="background-color:#9099a2;color:white;" type="submit">検索</button>
+    </form>
+</div>
+
+      
+       <!-- 群馬
+              <div class="col-m-md-auto">                  
+                  <label for="exampleFormControlSelect2">群馬県</label>
+                  <select name="place" multiple class="form-control select5 gumma" id="exampleFormControlSelect2">
+                      <option value="10201">前橋市</option>
+                      <option value="10202">高崎市</option>
+                      <option value="10203">桐生市</option>
+                      <option value="10204">伊勢崎市</option>
+                      <option value="10205">太田市</option>
+                      <option value="10206">沼田市</option>
+                      <option value="10207">館林市</option>
+                      <option value="10208">渋川市</option>
+                      <option value="10209">藤岡市</option>
+                      <option value="10210">富岡市</option>
+                      <option value="10211">安中市</option>
+                      <option value="10212">みどり市</option>
+                      <option value="10344">北群馬郡榛東村</option>
+                      <option value="10345">北群馬郡吉岡町</option>
+                      <option value="10366">多野郡上野村</option>
+                      <option value="10367">多野郡神流町</option>
+                      <option value="10382">甘楽郡下仁田町</option>
+                      <option value="10383">甘楽郡南牧村</option>
+                      <option value="10384">甘楽郡甘楽町</option>
+                      <option value="10421">吾妻郡中之条町</option>
+                      <option value="10424">吾妻郡長野原町</option>
+                      <option value="10425">吾妻郡嬬恋村</option>
+                      <option value="10426">吾妻郡草津町</option>
+                      <option value="10428">吾妻郡高山村</option>
+                      <option value="10429">吾妻郡東吾妻町</option>
+                      <option value="10443">利根郡片品村</option>
+                      <option value="10444">利根郡川場村</option>
+                      <option value="10448">利根郡昭和村</option>
+                      <option value="10449">利根郡みなかみ町</option>
+                      <option value="10464">佐波郡玉村町</option>
+                      <option value="10521">邑楽郡板倉町</option>
+                      <option value="10522">邑楽郡明和町</option>
+                      <option value="10523">邑楽郡千代田町</option>
+                      <option value="10524">邑楽郡大泉町</option>
+                      <option value="10525">邑楽郡邑楽町</option>
+                  </select>
+              </div>
+            </div>
+-->
+
+<script>
+// ほかの都道府県を選択中 or 5つ以上市区町村を選択中、選択不可に
+$('.select5').change(function() {
+    var count = $(".select5 option:selected").length;
+    var not = $(".select5 option").not(":selected");
+
+    // TODO 関数に入れたい
+    var ibaraki = $(".ibaraki option:selected").length;
+    var ibaraki_not = $(".ibaraki option").not(":selected");
+    var tokyo = $(".tokyo option:selected").length;
+    var tokyo_not = $(".tokyo option").not(":selected");
+    var chiba = $(".chiba option:selected").length;
+    var chiba_not = $(".chiba option").not(":selected");
+    var saitama = $(".saitama option:selected").length;
+    var saitama_not = $(".saitama option").not(":selected");
+    var kanagawa = $("kanagawa option:selected").length;
+    var kanagawa_not = $("kanagawa option").not(":selected");
+    var tochigi = $("tochigi option:selected").length;
+    var tochigi_not = $("tochigi option").not(":selected");
+    // var gumma = $("+gumma option:selected").length;
+    // var gumma_not = $("+ gumma option").not(":selected");
+    
+
+
+        if(count >= 5) {
+            not.attr("disabled",true);
+        }else if (ibaraki > 0){
+            kanagawa_not.attr("disabled",true);
+            tokyo_not.attr("disabled",true);
+            chiba_not.attr("disabled",true);
+            saitama_not.attr("disabled",true);
+            tochigi_not.attr("disabled",true);
+            gumma_not.attr("disabled",true);
+        }else if (kanagawa > 0){
+            ibaraki_not.attr("disabled",true);
+            tokyo_not.attr("disabled",true);
+            chiba_not.attr("disabled",true);
+            saitama_not.attr("disabled",true);
+            tochigi_not.attr("disabled",true);
+            gumma_not.attr("disabled",true);
+        }else if (tokyo > 0){
+            kanagawa_not.attr("disabled",true);
+            ibaraki_not.attr("disabled",true);
+            chiba_not.attr("disabled",true);
+            saitama_not.attr("disabled",true);
+            tochigi_not.attr("disabled",true);
+            gumma_not.attr("disabled",true);
+        }else if (chiba > 0){
+            kanagawa_not.attr("disabled",true);
+            tokyo_not.attr("disabled",true);
+            ibaraki_not.attr("disabled",true);
+            saitama_not.attr("disabled",true);
+            tochigi_not.attr("disabled",true);
+            gumma_not.attr("disabled",true);
+        }else if (saitama > 0){
+            kanagawa_not.attr("disabled",true);
+            tokyo_not.attr("disabled",true);
+            chiba_not.attr("disabled",true);
+            ibaraki_not.attr("disabled",true);
+            tochigi_not.attr("disabled",true);
+            gumma_not.attr("disabled",true);
+        }else if (tochigi > 0){
+            kanagawa_not.attr("disabled",true);
+            tokyo_not.attr("disabled",true);
+            chiba_not.attr("disabled",true);
+            saitama_not.attr("disabled",true);
+            ibaraki_not.attr("disabled",true);
+            gumma_not.attr("disabled",true);
+        }
+        // else if (gumma > 0){
+        //     kanagawa_not.attr("disabled",true);
+        //     tokyo_not.attr("disabled",true);
+        //     chiba_not.attr("disabled",true);
+        //     saitama_not.attr("disabled",true);
+        //     tochigi_not.attr("disabled",true);
+        //     ibaraki_not.attr("disabled",true);
+        // }
+        else{
+            not.attr("disabled",false);
+        }
+});
+
+
+// 職業選択3つ以上選択中、選択不可に
+$('.select3').change(function() {
+    var count = $(".select3 option:selected").length;
+    var not = $('.select3 option').not(':selected');
+        if(count >= 3) {
+            not.attr("disabled",true);
+        }else{
+            not.attr("disabled",false);
+        }
+});
+</script>
+ 
+
+{% endblock %}
