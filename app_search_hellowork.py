@@ -12,7 +12,6 @@ import datetime as dt
 import uuid
 from rq import Queue
 from app_worker import conn
-from bottle import route, run
 
 search_hellowork = Blueprint('app_search_hellowork', __name__)
 q = Queue(connection=conn)
