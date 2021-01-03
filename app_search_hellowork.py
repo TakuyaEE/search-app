@@ -10,17 +10,13 @@ import csv
 import pandas as pd
 import datetime as dt
 import uuid
-from rq import Queue
-from app_worker import conn
+
 
 search_hellowork = Blueprint('app_search_hellowork', __name__)
-q = Queue(connection=conn)
+
 
 @search_hellowork.route('/results', methods=['POST'])
-def worker():
-    background_process = q.enqueue(results)
-    return background_process
-def results(name):
+def results():
     if request.method == 'POST':
         # POSTから受け取り
         age = int(request.form.get('age'))
@@ -232,7 +228,7 @@ def results(name):
             df_values[i][0] = '<a href="' + url_list[i] + '">' + df_values[i][0]  + '</a>'
             i += 1
 
-        return name * 10, render_template('results.html', df_values = df_values, csv_path = csv_path, today = today)
+        return render_template('results.html', df_values = df_values, csv_path = csv_path, today = today)
 
     else:
         return redirect('hellowork.html')
