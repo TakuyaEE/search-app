@@ -48,14 +48,14 @@ search-app
 │  ├─css　スタイルシート  
 │  └─js　スクリプトファイル  
 │  
-└─templates  
+└─templates html  
 │  ├─base.html  
-│  ├─hellowork.html　検索条件設定ページのhtml  
-│  ├─index.html ルートhtml  
-│  ├─inquiry.html 問い合わせフォームhtml  
-│  ├─inquiry_send.html 問い合わせ完了ページのhtml  
-│  ├─no_result.html　検索結果なしhtml  
-│  ├─results.html　検索結果表示html  
-│  ├─search.html  検索条件送信先のhtml  
-│  └─technology.html 技術選定についてhtml  
+│  ├─hellowork.html  
+│  ├─index.html  
+│  ├─inquiry.html  
+│  ├─inquiry_send.html  
+│  ├─no_result.html  
+│  ├─results.html  
+│  ├─search.html  
+│  └─technology.html  
 
