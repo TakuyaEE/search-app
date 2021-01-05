@@ -457,7 +457,7 @@
                   </select>
               </div>
             </div>
--->
+        -->
 
 <script>
 // ほかの都道府県を選択中 or 5つ以上市区町村を選択中、選択不可に
@@ -466,79 +466,69 @@ $('.select5').change(function() {
     var not = $(".select5 option").not(":selected");
 
     // TODO 関数に入れたい
-    var ibaraki = $(".ibaraki option:selected").length;
-    var ibaraki_not = $(".ibaraki option").not(":selected");
-    var tokyo = $(".tokyo option:selected").length;
-    var tokyo_not = $(".tokyo option").not(":selected");
-    var chiba = $(".chiba option:selected").length;
-    var chiba_not = $(".chiba option").not(":selected");
-    var saitama = $(".saitama option:selected").length;
-    var saitama_not = $(".saitama option").not(":selected");
-    var kanagawa = $("kanagawa option:selected").length;
-    var kanagawa_not = $("kanagawa option").not(":selected");
-    var tochigi = $("tochigi option:selected").length;
-    var tochigi_not = $("tochigi option").not(":selected");
-    // var gumma = $("+gumma option:selected").length;
-    // var gumma_not = $("+ gumma option").not(":selected");
-    
+    // var ibaraki = $(".ibaraki option:selected").length;
+    // var ibaraki_not = $(".ibaraki option").not(":selected");
+    // var tokyo = $(".tokyo option:selected").length;
+    // var tokyo_not = $(".tokyo option").not(":selected");
+    // var chiba = $(".chiba option:selected").length;
+    // var chiba_not = $(".chiba option").not(":selected");
+    // var saitama = $(".saitama option:selected").length;
+    // var saitama_not = $(".saitama option").not(":selected");
+    // var kanagawa = $(".kanagawa option:selected").length;
+    // var kanagawa_not = $(".kanagawa option").not(":selected");
+    // var tochigi = $(".tochigi option:selected").length;
+    // var tochigi_not = $(".tochigi option").not(":selected");
+
+    let prefList = [ibaraki, tokyo, chiba, saitama, kanagawa, tochigi];
+    prefListCount = 1;
+    for(let pref in prefList) {
+        var pref = $("." + pref + "option:selected").length;
+        var prefListCount = $("." + pref + "option").not(":selected");
+        prefListCount++;
+    }
 
 
-        if(count >= 5) {
-            not.attr("disabled",true);
-        }else if (ibaraki > 0){
-            kanagawa_not.attr("disabled",true);
-            tokyo_not.attr("disabled",true);
-            chiba_not.attr("disabled",true);
-            saitama_not.attr("disabled",true);
-            tochigi_not.attr("disabled",true);
-            gumma_not.attr("disabled",true);
-        }else if (kanagawa > 0){
-            ibaraki_not.attr("disabled",true);
-            tokyo_not.attr("disabled",true);
-            chiba_not.attr("disabled",true);
-            saitama_not.attr("disabled",true);
-            tochigi_not.attr("disabled",true);
-            gumma_not.attr("disabled",true);
-        }else if (tokyo > 0){
-            kanagawa_not.attr("disabled",true);
-            ibaraki_not.attr("disabled",true);
-            chiba_not.attr("disabled",true);
-            saitama_not.attr("disabled",true);
-            tochigi_not.attr("disabled",true);
-            gumma_not.attr("disabled",true);
-        }else if (chiba > 0){
-            kanagawa_not.attr("disabled",true);
-            tokyo_not.attr("disabled",true);
-            ibaraki_not.attr("disabled",true);
-            saitama_not.attr("disabled",true);
-            tochigi_not.attr("disabled",true);
-            gumma_not.attr("disabled",true);
-        }else if (saitama > 0){
-            kanagawa_not.attr("disabled",true);
-            tokyo_not.attr("disabled",true);
-            chiba_not.attr("disabled",true);
-            ibaraki_not.attr("disabled",true);
-            tochigi_not.attr("disabled",true);
-            gumma_not.attr("disabled",true);
-        }else if (tochigi > 0){
-            kanagawa_not.attr("disabled",true);
-            tokyo_not.attr("disabled",true);
-            chiba_not.attr("disabled",true);
-            saitama_not.attr("disabled",true);
-            ibaraki_not.attr("disabled",true);
-            gumma_not.attr("disabled",true);
-        }
-        // else if (gumma > 0){
-        //     kanagawa_not.attr("disabled",true);
-        //     tokyo_not.attr("disabled",true);
-        //     chiba_not.attr("disabled",true);
-        //     saitama_not.attr("disabled",true);
-        //     tochigi_not.attr("disabled",true);
-        //     ibaraki_not.attr("disabled",true);
-        // }
-        else{
-            not.attr("disabled",false);
-        }
+    if(count >= 5) {
+        not.attr("disabled",true);
+    }else if (ibaraki > 0){
+        2.attr("disabled",true);
+        3.attr("disabled",true);
+        4.attr("disabled",true);
+        5.attr("disabled",true);
+        6.attr("disabled",true);
+    }else if (tokyo > 0){
+        1.attr("disabled",true);
+        3.attr("disabled",true);
+        4.attr("disabled",true);
+        4.attr("disabled",true);
+        6.attr("disabled",true);
+    }else if (chiba > 0){
+        1.attr("disabled",true);
+        2.attr("disabled",true);
+        4.attr("disabled",true);
+        5.attr("disabled",true);
+        6.attr("disabled",true);
+    }else if (saitama > 0){
+        1.attr("disabled",true);
+        2.attr("disabled",true);
+        3.attr("disabled",true);
+        5.attr("disabled",true);
+        6.attr("disabled",true);
+    }else if (kanagawa > 0){
+        1.attr("disabled",true);
+        2.attr("disabled",true);
+        3.attr("disabled",true);
+        4.attr("disabled",true);
+        6.attr("disabled",true);
+    }else if (tochigi > 0){
+        1.attr("disabled",true);
+        2.attr("disabled",true);
+        3.attr("disabled",true);
+        4.attr("disabled",true);
+        5.attr("disabled",true);
+    }else{
+        not.attr("disabled",false);
+    }
 });
 
 
