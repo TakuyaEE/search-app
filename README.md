@@ -33,7 +33,7 @@ search-app
 │  app_inquiry.py　問い合わせフォームの処理  
 │  app_search_hellowork.py　フォームから値を受け取り、検索・データ処理  
 │  chromedriver  自動操作用のブラウザ
-│  Procfile  初めに開くファイル（app.py）を設定
+│  Procfile  初めに開くファイル（app.py）を設定　　
 │  README.md  
 │  requirements.txt 使用ライブラリ情報  
 │  runtime.txt pythonのバージョン情報を記載  
