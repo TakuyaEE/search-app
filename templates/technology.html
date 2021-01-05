@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+    <div class="font-weight-bold pt-5 pb-2 mt-5 text-center">
+        <h2>技術選定の際に考えたこと、意識して使用した技術</h2>
+    </div>
+    <div>
+
+    <div class="panel-group" id="accordion">
+        <div class="faqHeader">題材選定・要件定義</div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false">このアプリを作った理由</a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                <div class="panel-body">
+                    未経験からのエンジニア転職ということで、技術や考え方をアピールする手段としてポートフォリオは大きな役割を持つと考えました。<br>
+                    経験者も応募してくる中、ハードスキルでアピールすることは難しく、ソフトスキルでアピールする必要がありました。<br>
+                    そのため、リアリティのあるアプリを作りたいと考え、受講中であった職業訓練校のクラスメイトをターゲットに設定し、フィードバックをもらいながら、アジャイル開発をしていこうと考えました。<br>
+                    求人情報検索は、就職活動を進めていく上で必須でありながら、大きなリソースを割かれていると思い、自動化することには大きなメリットがあると考え、このアプリを制作しました。
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTen" aria-expanded="false">要件定義</a>
+                </h4>
+            </div>
+            <div id="collapseTen" class="panel-collapse collapse" aria-expanded="false">
+                <div class="panel-body">
+                    アプリを作成するうえで、最低限必要な機能として、次の3つを定義しました。<br>
+                    1.フォームに検索条件を入力し、自動で検索<br>
+                    2.検索結果から情報を収集し、整形・出力<br>
+                    3.バグ報告や問い合わせをしやすいようにフォームの設置<br>
+                    さらに、便利にするために実装したい機能として、以下を考えました。<br>
+                    ・ユーザー登録をし、検索履歴を保持<br>
+                    ・検索結果から任意の情報を選択し、csvで出力、メール等で共有
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEleven" aria-expanded="false">機能毎に意識して使用した技術、学習した知識</a>
+                </h4>
+            </div>
+            <div id="collapseEleven" class="panel-collapse collapse" aria-expanded="false">
+                <div class="panel-body">
+                    <strong>検索条件設定ページ</strong>
+                    ・JavaScriptによるフォームコントロールを行い、意図しないPOSTを防止<br>
+                    ・情報を収集して結果を表示するまでに時間がかかるため、検索を押した後に案内の表示、ミニゲームの設置<br>
+                    ・POST、GET、それぞれのメソッドの理解<br>
+                    <strong>検索結果表示ページ</strong><br>
+                    ・flask内蔵のjinja2による動的なHTMLの生成<br>
+                    <strong>問い合わせページ</strong><br>
+                    ・個人開発のため、送信先にメールではなく、LINEを設定<br>
+                    ・LINE MessageAPIを使用することで、APIトークン、キー、webhook等、APIへの理解
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="panel-group" id="accordion">
+        <div class="faqHeader">バックエンド</div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false">なぜ「Python」?</a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                <div class="panel-body">
+                    学習するサーバーサイド言語として、候補に挙がったのは「Java」「PHP」「RUby」「Python」の4つでした。<br>
+                    その中から「Python」を選択した理由は、大きく分けて3つあります。<br>
+                    1.可読性が高く、短くコードが書けるので、学習コストが低いと考えたこと<br>
+                    2.学習の方向性が定まっていなかった為、ライブラリが豊富で、様々な分野をこなせることに魅力を感じたこと<br>
+                    3.基本情報技術者試験の受験を決めていたため、午後の言語として選択できること<br>
+                    以上、3つの点を考慮して最初に学習する言語として「Python」を選択しました。
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTen" aria-expanded="false">なぜ「Django」ではなく「flask」?</a>
+                </h4>
+            </div>
+            <div id="collapseTen" class="panel-collapse collapse" aria-expanded="false">
+                <div class="panel-body">
+                    開発を一人で進めるうえで、「Django」ではオーバースペックに感じたからです。<br>
+                    機能が少ないことも、学習コストが低く小回りが利くという面でデメリットよりもメリットを大きく感じました。<br>
+                    また、機能が少ないことでライブラリに頼らざるを得ず、ライブラリを自分で選定し、設定することは学習効果が大きいと考えました。
+                </div>
+            </div>
+        </div>
+
+            <div class="panel-group" id="accordion">
+        <div class="faqHeader">バックエンド</div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false">なぜ「Python」?</a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                <div class="panel-body">
+                    学習するサーバーサイド言語として、候補に挙がったのは「Java」「PHP」「RUby」「Python」の4つでした。<br>
+                    その中から「Python」を選択した理由は、大きく分けて3つあります。<br>
+                    1.可読性が高く、短くコードが書けるので、学習コストが低いと考えたこと<br>
+                    2.学習の方向性が定まっていなかった為、ライブラリが豊富で、様々な分野をこなせることに魅力を感じたこと<br>
+                    3.基本情報技術者試験の受験を決めていたため、午後の言語として選択できること<br>
+                    以上、3つの点を考慮して最初に学習する言語として「Python」を選択しました。
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTen" aria-expanded="false">なぜ「Django」ではなく「flask」?</a>
+                </h4>
+            </div>
+            <div id="collapseTen" class="panel-collapse collapse" aria-expanded="false">
+                <div class="panel-body">
+                    開発を一人で進めるうえで、「Django」ではオーバースペックに感じたからです。<br>
+                    機能が少ないことも、学習コストが低く小回りが利くという面でデメリットよりもメリットを大きく感じました。<br>
+                    また、機能が少ないことでライブラリに頼らざるを得ず、ライブラリを自分で選定し、設定することは学習効果が大きいと考えました。
+                </div>
+            </div>
+        </div>
+
+
+<script type="text/javascript">
+    jQuery(function ($) {
+        $("#code").html("&lt;div class=&quot;container&quot;&gt;\r\n    &lt;br /&gt;\r\n    &lt;br /&gt;\r\n    &lt;br /&gt;\r\n\r\n    &lt;div class=&quot;alert alert-warning alert-dismissible&quot; role=&quot;alert&quot;&gt;\r\n        &lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;alert&quot;&gt;&lt;span aria-hidden=&quot;true&quot;&gt;&amp;times;&lt;/span&gt;&lt;span class=&quot;sr-only&quot;&gt;Close&lt;/span&gt;&lt;/button&gt;\r\n        This section contains a wealth of information, related to &lt;strong&gt;PrepBootstrap&lt;/strong&gt; and its store. If you cannot find an answer to your question, \r\n        make sure to contact us. \r\n    &lt;/div&gt;\r\n\r\n    &lt;br /&gt;\r\n\r\n    &lt;div class=&quot;panel-group&quot; id=&quot;accordion&quot;&gt;\r\n        &lt;div class=&quot;faqHeader&quot;&gt;General questions&lt;/div&gt;\r\n        &lt;div class=&quot;panel panel-default&quot;&gt;\r\n            &lt;div class=&quot;panel-heading&quot;&gt;\r\n                &lt;h4 class=&quot;panel-title&quot;&gt;\r\n                    &lt;a class=&quot;accordion-toggle&quot; data-toggle=&quot;collapse&quot; data-parent=&quot;#accordion&quot; href=&quot;#collapseOne&quot;&gt;Is account registration required?&lt;/a&gt;\r\n                &lt;/h4&gt;\r\n            &lt;/div&gt;\r\n            &lt;div id=&quot;collapseOne&quot; class=&quot;panel-collapse collapse in&quot;&gt;\r\n                &lt;div class=&quot;panel-body&quot;&gt;\r\n                    Account registration at &lt;strong&gt;PrepBootstrap&lt;/strong&gt; is only required if you will be selling or buying themes. \r\n                    This ensures a valid communication channel for all parties involved in any transactions. \r\n                &lt;/div&gt;\r\n            &lt;/div&gt;\r\n        &lt;/div&gt;\r\n        &lt;div class=&quot;panel panel-default&quot;&gt;\r\n            &lt;div class=&quot;panel-heading&quot;&gt;\r\n                &lt;h4 class=&quot;panel-title&quot;&gt;\r\n                    &lt;a class=&quot;accordion-toggle collapsed&quot; data-toggle=&quot;collapse&quot; data-parent=&quot;#accordion&quot; href=&quot;#collapseTen&quot;&gt;Can I submit my own Bootstrap templates or themes?&lt;/a&gt;\r\n                &lt;/h4&gt;\r\n            &lt;/div&gt;\r\n            &lt;div id=&quot;collapseTen&quot; class=&quot;panel-collapse collapse&quot;&gt;\r\n                &lt;div class=&quot;panel-body&quot;&gt;\r\n                    A lot of the content of the site has been submitted by the community. Whether it is a commercial element/template/theme \r\n                    or a free one, you are encouraged to contribute. All credits are published along with the resources. \r\n                &lt;/div&gt;\r\n            &lt;/div&gt;\r\n        &lt;/div&gt;\r\n        &lt;div class=&quot;panel panel-default&quot;&gt;\r\n            &lt;div class=&quot;panel-heading&quot;&gt;\r\n                &lt;h4 class=&quot;panel-title&quot;&gt;\r\n                    &lt;a class=&quot;accordion-toggle collapsed&quot; data-toggle=&quot;collapse&quot; data-parent=&quot;#accordion&quot; href=&quot;#collapseEleven&quot;&gt;What is the currency used for all transactions?&lt;/a&gt;\r\n                &lt;/h4&gt;\r\n            &lt;/div&gt;\r\n            &lt;div id=&quot;collapseEleven&quot; class=&quot;panel-collapse collapse&quot;&gt;\r\n                &lt;div class=&quot;panel-body&quot;&gt;\r\n                    All prices for themes, templates and other items, including each seller&#39;s or buyer&#39;s account balance are in &lt;strong&gt;USD&lt;/strong&gt;\r\n                &lt;/div&gt;\r\n            &lt;/div&gt;\r\n        &lt;/div&gt;\r\n\r\n        &lt;div class=&quot;faqHeader&quot;&gt;Sellers&lt;/div&gt;\r\n        &lt;div class=&quot;panel panel-default&quot;&gt;\r\n            &lt;div class=&quot;panel-heading&quot;&gt;\r\n                &lt;h4 class=&quot;panel-title&quot;&gt;\r\n                    &lt;a class=&quot;accordion-toggle collapsed&quot; data-toggle=&quot;collapse&quot; data-parent=&quot;#accordion&quot; href=&quot;#collapseTwo&quot;&gt;Who cen sell items?&lt;/a&gt;\r\n                &lt;/h4&gt;\r\n            &lt;/div&gt;\r\n            &lt;div id=&quot;collapseTwo&quot; class=&quot;panel-collapse collapse&quot;&gt;\r\n                &lt;div class=&quot;panel-body&quot;&gt;\r\n                    Any registed user, who presents a work, which is genuine and appealing, can post it on &lt;strong&gt;PrepBootstrap&lt;/strong&gt;.\r\n                &lt;/div&gt;\r\n            &lt;/div&gt;\r\n        &lt;/div&gt;\r\n        &lt;div class=&quot;panel panel-default&quot;&gt;\r\n            &lt;div class=&quot;panel-heading&quot;&gt;\r\n                &lt;h4 class=&quot;panel-title&quot;&gt;\r\n                    &lt;a class=&quot;accordion-toggle collapsed&quot; data-toggle=&quot;collapse&quot; data-parent=&quot;#accordion&quot; href=&quot;#collapseThree&quot;&gt;I want to sell my items - what are the steps?&lt;/a&gt;\r\n                &lt;/h4&gt;\r\n            &lt;/div&gt;\r\n            &lt;div id=&quot;collapseThree&quot; class=&quot;panel-collapse collapse&quot;&gt;\r\n                &lt;div class=&quot;panel-body&quot;&gt;\r\n                    The steps involved in this process are really simple. All you need to do is:\r\n                    &lt;ul&gt;\r\n                        &lt;li&gt;Register an account&lt;/li&gt;\r\n                        &lt;li&gt;Activate your account&lt;/li&gt;\r\n                        &lt;li&gt;Go to the &lt;strong&gt;Themes&lt;/strong&gt; section and upload your theme&lt;/li&gt;\r\n                        &lt;li&gt;The next step is the approval step, which usually takes about 72 hours.&lt;/li&gt;\r\n                    &lt;/ul&gt;\r\n                &lt;/div&gt;\r\n            &lt;/div&gt;\r\n        &lt;/div&gt;\r\n        &lt;div class=&quot;panel panel-default&quot;&gt;\r\n            &lt;div class=&quot;panel-heading&quot;&gt;\r\n                &lt;h4 class=&quot;panel-title&quot;&gt;\r\n                    &lt;a class=&quot;accordion-toggle collapsed&quot; data-toggle=&quot;collapse&quot; data-parent=&quot;#accordion&quot; href=&quot;#collapseFive&quot;&gt;How much do I get from each sale?&lt;/a&gt;\r\n                &lt;/h4&gt;\r\n            &lt;/div&gt;\r\n            &lt;div id=&quot;collapseFive&quot; class=&quot;panel-collapse collapse&quot;&gt;\r\n                &lt;div class=&quot;panel-body&quot;&gt;\r\n                    Here, at &lt;strong&gt;PrepBootstrap&lt;/strong&gt;, we offer a great, 70% rate for each seller, regardless of any restrictions, such as volume, date of entry, etc.\r\n                    &lt;br /&gt;\r\n                &lt;/div&gt;\r\n            &lt;/div&gt;\r\n        &lt;/div&gt;\r\n        &lt;div class=&quot;panel panel-default&quot;&gt;\r\n            &lt;div class=&quot;panel-heading&quot;&gt;\r\n                &lt;h4 class=&quot;panel-title&quot;&gt;\r\n                    &lt;a class=&quot;accordion-toggle collapsed&quot; data-toggle=&quot;collapse&quot; data-parent=&quot;#accordion&quot; href=&quot;#collapseSix&quot;&gt;Why sell my items here?&lt;/a&gt;\r\n                &lt;/h4&gt;\r\n            &lt;/div&gt;\r\n            &lt;div id=&quot;collapseSix&quot; class=&quot;panel-collapse collapse&quot;&gt;\r\n                &lt;div class=&quot;panel-body&quot;&gt;\r\n                    There are a number of reasons why you should join us:\r\n                    &lt;ul&gt;\r\n                        &lt;li&gt;A great 70% flat rate for your items.&lt;/li&gt;\r\n                        &lt;li&gt;Fast response/approval times. Many sites take weeks to process a theme or template. And if it gets rejected, there is another iteration. We have aliminated this, and made the process very fast. It only takes up to 72 hours for a template/theme to get reviewed.&lt;/li&gt;\r\n                        &lt;li&gt;We are not an exclusive marketplace. This means that you can sell your items on &lt;strong&gt;PrepBootstrap&lt;/strong&gt;, as well as on any other marketplate, and thus increase your earning potential.&lt;/li&gt;\r\n                    &lt;/ul&gt;\r\n                &lt;/div&gt;\r\n            &lt;/div&gt;\r\n        &lt;/div&gt;\r\n        &lt;div class=&quot;panel panel-default&quot;&gt;\r\n            &lt;div class=&quot;panel-heading&quot;&gt;\r\n                &lt;h4 class=&quot;panel-title&quot;&gt;\r\n                    &lt;a class=&quot;accordion-toggle collapsed&quot; data-toggle=&quot;collapse&quot; data-parent=&quot;#accordion&quot; href=&quot;#collapseEight&quot;&gt;What are the payment options?&lt;/a&gt;\r\n                &lt;/h4&gt;\r\n            &lt;/div&gt;\r\n            &lt;div id=&quot;collapseEight&quot; class=&quot;panel-collapse collapse&quot;&gt;\r\n                &lt;div class=&quot;panel-body&quot;&gt;\r\n                    The best way to transfer funds is via Paypal. This secure platform ensures timely payments and a secure environment. \r\n                &lt;/div&gt;\r\n            &lt;/div&gt;\r\n        &lt;/div&gt;\r\n        &lt;div class=&quot;panel panel-default&quot;&gt;\r\n            &lt;div class=&quot;panel-heading&quot;&gt;\r\n                &lt;h4 class=&quot;panel-title&quot;&gt;\r\n                    &lt;a class=&quot;accordion-toggle collapsed&quot; data-toggle=&quot;collapse&quot; data-parent=&quot;#accordion&quot; href=&quot;#collapseNine&quot;&gt;When do I get paid?&lt;/a&gt;\r\n                &lt;/h4&gt;\r\n            &lt;/div&gt;\r\n            &lt;div id=&quot;collapseNine&quot; class=&quot;panel-collapse collapse&quot;&gt;\r\n                &lt;div class=&quot;panel-body&quot;&gt;\r\n                    Our standard payment plan provides for monthly payments. At the end of each month, all accumulated funds are transfered to your account. \r\n                    The minimum amount of your balance should be at least 70 USD. \r\n                &lt;/div&gt;\r\n            &lt;/div&gt;\r\n        &lt;/div&gt;\r\n\r\n        &lt;div class=&quot;faqHeader&quot;&gt;Buyers&lt;/div&gt;\r\n        &lt;div class=&quot;panel panel-default&quot;&gt;\r\n            &lt;div class=&quot;panel-heading&quot;&gt;\r\n                &lt;h4 class=&quot;panel-title&quot;&gt;\r\n                    &lt;a class=&quot;accordion-toggle collapsed&quot; data-toggle=&quot;collapse&quot; data-parent=&quot;#accordion&quot; href=&quot;#collapseFour&quot;&gt;I want to buy a theme - what are the steps?&lt;/a&gt;\r\n                &lt;/h4&gt;\r\n            &lt;/div&gt;\r\n            &lt;div id=&quot;collapseFour&quot; class=&quot;panel-collapse collapse&quot;&gt;\r\n                &lt;div class=&quot;panel-body&quot;&gt;\r\n                    Buying a theme on &lt;strong&gt;PrepBootstrap&lt;/strong&gt; is really simple. Each theme has a live preview. \r\n                    Once you have selected a theme or template, which is to your liking, you can quickly and securely pay via Paypal.\r\n                    &lt;br /&gt;\r\n                    Once the transaction is complete, you gain full access to the purchased product. \r\n                &lt;/div&gt;\r\n            &lt;/div&gt;\r\n        &lt;/div&gt;\r\n        &lt;div class=&quot;panel panel-default&quot;&gt;\r\n            &lt;div class=&quot;panel-heading&quot;&gt;\r\n                &lt;h4 class=&quot;panel-title&quot;&gt;\r\n                    &lt;a class=&quot;accordion-toggle collapsed&quot; data-toggle=&quot;collapse&quot; data-parent=&quot;#accordion&quot; href=&quot;#collapseSeven&quot;&gt;Is this the latest version of an item&lt;/a&gt;\r\n                &lt;/h4&gt;\r\n            &lt;/div&gt;\r\n            &lt;div id=&quot;collapseSeven&quot; class=&quot;panel-collapse collapse&quot;&gt;\r\n                &lt;div class=&quot;panel-body&quot;&gt;\r\n                    Each item in &lt;strong&gt;PrepBootstrap&lt;/strong&gt; is maintained to its latest version. This ensures its smooth operation.\r\n                &lt;/div&gt;\r\n            &lt;/div&gt;\r\n        &lt;/div&gt;\r\n    &lt;/div&gt;\r\n&lt;/div&gt;\r\n\r\n&lt;style&gt;\r\n    .faqHeader {\r\n        font-size: 27px;\r\n        margin: 20px;\r\n    }\r\n\r\n    .panel-heading [data-toggle=&quot;collapse&quot;]:after {\r\n        font-family: &#39;Glyphicons Halflings&#39;;\r\n        content: &quot;\e072&quot;; /* &quot;play&quot; icon */\r\n        float: right;\r\n        color: #F58723;\r\n        font-size: 18px;\r\n        line-height: 22px;\r\n        /* rotate &quot;play&quot; icon from &gt; (right arrow) to down arrow */\r\n        -webkit-transform: rotate(-90deg);\r\n        -moz-transform: rotate(-90deg);\r\n        -ms-transform: rotate(-90deg);\r\n        -o-transform: rotate(-90deg);\r\n        transform: rotate(-90deg);\r\n    }\r\n\r\n    .panel-heading [data-toggle=&quot;collapse&quot;].collapsed:after {\r\n        /* rotate &quot;play&quot; icon from &gt; (right arrow) to ^ (up arrow) */\r\n        -webkit-transform: rotate(90deg);\r\n        -moz-transform: rotate(90deg);\r\n        -ms-transform: rotate(90deg);\r\n        -o-transform: rotate(90deg);\r\n        transform: rotate(90deg);\r\n        color: #454444;\r\n    }\r\n&lt;/style&gt;\r\n");
+
+        $("#convertBtnLink").click(function (e) {
+            e.preventDefault();
+
+            $('#convertForm input[name="Content"]').val($("#code").text());
+            $('#convertForm').submit();
+        });
+    });
+</script>
+
+{% endblock %}
