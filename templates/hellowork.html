@@ -460,88 +460,88 @@
         -->
 
 <script>
-// ほかの都道府県を選択中 or 5つ以上市区町村を選択中、選択不可に
-$('.select5').change(function() {
-    var count = $(".select5 option:selected").length;
-    var not = $(".select5 option").not(":selected");
+    // ほかの都道府県を選択中 or 5つ以上市区町村を選択中、選択不可に
+    $('.select5').change(function() {
+        var count = $(".select5 option:selected").length;
+        var not = $(".select5 option").not(":selected");
 
-    // TODO 関数に入れたい
-    var ibaraki = $(".ibaraki option:selected").length;
-    var ibaraki_not = $(".ibaraki option").not(":selected");
-    var tokyo = $(".tokyo option:selected").length;
-    var tokyo_not = $(".tokyo option").not(":selected");
-    var chiba = $(".chiba option:selected").length;
-    var chiba_not = $(".chiba option").not(":selected");
-    var saitama = $(".saitama option:selected").length;
-    var saitama_not = $(".saitama option").not(":selected");
-    var kanagawa = $(".kanagawa option:selected").length;
-    var kanagawa_not = $(".kanagawa option").not(":selected");
-    var tochigi = $(".tochigi option:selected").length;
-    var tochigi_not = $(".tochigi option").not(":selected");
+        // TODO 関数に入れたい
+        var ibaraki = $(".ibaraki option:selected").length;
+        var ibaraki_not = $(".ibaraki option").not(":selected");
+        var tokyo = $(".tokyo option:selected").length;
+        var tokyo_not = $(".tokyo option").not(":selected");
+        var chiba = $(".chiba option:selected").length;
+        var chiba_not = $(".chiba option").not(":selected");
+        var saitama = $(".saitama option:selected").length;
+        var saitama_not = $(".saitama option").not(":selected");
+        var kanagawa = $(".kanagawa option:selected").length;
+        var kanagawa_not = $(".kanagawa option").not(":selected");
+        var tochigi = $(".tochigi option:selected").length;
+        var tochigi_not = $(".tochigi option").not(":selected");
 
-    // let prefList = [ibaraki, tokyo, chiba, saitama, kanagawa, tochigi];
-    // prefListCount = 1;
-    // for(let pref in prefList) {
-    //     var pref = $("." + pref + "option:selected").length;
-    //     var prefListCount = $("." + pref + "option").not(":selected");
-    //     prefListCount++;
-    // }
-
-
-    if(count >= 5) {
-        not.attr("disabled",true);
-    }else if (ibaraki > 0){
-        tokyo_not.attr("disabled",true);
-        chiba_not.attr("disabled",true);
-        saitama_not.attr("disabled",true);
-        kanagawa_not.attr("disabled",true);
-        tochigi_not.attr("disabled",true);
-    }else if (tokyo > 0){
-        ibaraki.attr("disabled",true);
-        chiba_not.attr("disabled",true);
-        saitama_not.attr("disabled",true);
-        kanagawa_not.attr("disabled",true);
-        tochigi_not.attr("disabled",true);
-    }else if (chiba > 0){
-        ibaraki.attr("disabled",true);
-        tokyo_not.attr("disabled",true);
-        saitama_not.attr("disabled",true);
-        kanagawa_not.attr("disabled",true);
-        tochigi_not.attr("disabled",true);
-    }else if (saitama > 0){
-        ibaraki.attr("disabled",true);
-        tokyo_not.attr("disabled",true);
-        chiba_not.attr("disabled",true);
-        kanagawa_not.attr("disabled",true);
-        tochigi_not.attr("disabled",true);
-    }else if (kanagawa > 0){
-        ibaraki.attr("disabled",true);
-        tokyo_not.attr("disabled",true);
-        chiba_not.attr("disabled",true);
-        saitama_not.attr("disabled",true);
-        tochigi_not.attr("disabled",true);
-    }else if (tochigi > 0){
-        ibaraki.attr("disabled",true);
-        tokyo_not.attr("disabled",true);
-        chiba_not.attr("disabled",true);
-        saitama_not.attr("disabled",true);
-        kanagawa_not.attr("disabled",true);
-    }else{
-        not.attr("disabled",false);
-    }
-});
+        // let prefList = [ibaraki, tokyo, chiba, saitama, kanagawa, tochigi];
+        // prefListCount = 1;
+        // for(let pref in prefList) {
+        //     var pref = $("." + pref + "option:selected").length;
+        //     var prefListCount = $("." + pref + "option").not(":selected");
+        //     prefListCount++;
+        // }
 
 
-// 職業選択3つ以上選択中、選択不可に
-$('.select3').change(function() {
-    var count = $(".select3 option:selected").length;
-    var not = $('.select3 option').not(':selected');
-        if(count >= 3) {
+        if(count >= 5) {
             not.attr("disabled",true);
+        }else if (ibaraki > 0){
+            tokyo_not.attr("disabled",true);
+            chiba_not.attr("disabled",true);
+            saitama_not.attr("disabled",true);
+            kanagawa_not.attr("disabled",true);
+            tochigi_not.attr("disabled",true);
+        }else if (tokyo > 0){
+            ibaraki.attr("disabled",true);
+            chiba_not.attr("disabled",true);
+            saitama_not.attr("disabled",true);
+            kanagawa_not.attr("disabled",true);
+            tochigi_not.attr("disabled",true);
+        }else if (chiba > 0){
+            ibaraki.attr("disabled",true);
+            tokyo_not.attr("disabled",true);
+            saitama_not.attr("disabled",true);
+            kanagawa_not.attr("disabled",true);
+            tochigi_not.attr("disabled",true);
+        }else if (saitama > 0){
+            ibaraki.attr("disabled",true);
+            tokyo_not.attr("disabled",true);
+            chiba_not.attr("disabled",true);
+            kanagawa_not.attr("disabled",true);
+            tochigi_not.attr("disabled",true);
+        }else if (kanagawa > 0){
+            ibaraki.attr("disabled",true);
+            tokyo_not.attr("disabled",true);
+            chiba_not.attr("disabled",true);
+            saitama_not.attr("disabled",true);
+            tochigi_not.attr("disabled",true);
+        }else if (tochigi > 0){
+            ibaraki.attr("disabled",true);
+            tokyo_not.attr("disabled",true);
+            chiba_not.attr("disabled",true);
+            saitama_not.attr("disabled",true);
+            kanagawa_not.attr("disabled",true);
         }else{
             not.attr("disabled",false);
         }
-});
+    });
+
+
+    // 職業選択3つ以上選択中、選択不可に
+    $('.select3').change(function() {
+        var count = $(".select3 option:selected").length;
+        var not = $('.select3 option').not(':selected');
+            if(count >= 3) {
+                not.attr("disabled",true);
+            }else{
+                not.attr("disabled",false);
+            }
+    });
 </script>
  
 
