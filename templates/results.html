@@ -30,10 +30,17 @@
 			</tbody>
 		</table>
 	</div>
+	<script type=text/javascript src="{{ url_for('static', filename='js/paginate.js') }}"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.1/js/jquery.tablesorter.min.js"></script>
 	<script>
 		$(document).ready(function() {
 			$('#fav-table').tablesorter();
 		});
 	</script>
+	<script>
+		$(document).ready(function() {
+			$(".mytable").paginate(rows: 50, position: "top", jqueryui: true);
+		});
+</script>
+
 {% endblock %}
