@@ -146,7 +146,8 @@ def results():
                 for case_count,category_item in enumerate(category_items, 1):
                     if str(category_item) in "disp_inline_block width15em":
                         continue
-                    category = (str(category_item.find('div').text)).replace(' ''　', '')
+                    category = str(category_item.find('div').text)
+                    category = category.translate(str.maketrans({'　': '', ' ': ''}))
                     case_list[case_count] = category
 
                 # 賃金
