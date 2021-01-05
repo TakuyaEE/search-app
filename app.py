@@ -5,6 +5,9 @@ import os
 from app_inquiry import inquiry
 from app_search_hellowork import search_hellowork
 
+
+app = Flask(__name__)
+
 # 別モジュールをblueprintで呼び出し
 app.register_blueprint(search_hellowork)
 app.register_blueprint(inquiry)
@@ -12,7 +15,7 @@ app.register_blueprint(inquiry)
 
 # ルーティング処理
 
-app = Flask(__name__)
+
 
 @app.route('/')
 def index():
