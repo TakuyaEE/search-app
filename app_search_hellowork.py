@@ -185,10 +185,10 @@ def results():
         df = df.drop(columns=df.columns[1])
         df = df.drop(columns=df.columns[2])
         df = df.drop(columns=df.columns[3])
-        df = df.drop(columns=df.columns[3])
         # df = df.drop(columns=df.columns[3])
-        # df = df.drop(columns=df.columns[3])
-        # df = df.drop(columns=df.columns[5])
+        # df = df.drop(columns=df.columns[4])
+        # df = df.drop(columns=df.columns[4])
+        # df = df.drop(columns=df.columns[4])
         df = df.replace('\n''\t', '', regex=True)
 
         # 列のリネーム
