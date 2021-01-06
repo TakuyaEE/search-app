@@ -186,7 +186,7 @@ def results():
         df = df.drop(columns=df.columns[2])
         df = df.drop(columns=df.columns[3])
         df = df.drop(columns=df.columns[3])
-        df = df.drop(columns=df.columns[3])
+        df = df.drop(columns=df.columns[4])
         # df = df.drop(columns=df.columns[3])
         # df = df.drop(columns=df.columns[6])
         df = df.replace('\n''\t', '', regex=True)
