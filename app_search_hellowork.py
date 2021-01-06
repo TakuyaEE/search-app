@@ -147,7 +147,6 @@ def results():
                     if str(category_item) in "disp_inline_block width15em":
                         continue
                     category = str(category_item.find('div').text)
-                    category = category.translate(str.maketrans({'　': '', ' ': ''}))
                     case_list[case_count] = category
 
                 # 賃金
@@ -183,10 +182,14 @@ def results():
 
 
         # 不要な列,空白の削除
-        df = df.drop(columns=df.columns[6])
-        df = df.drop(columns=df.columns[10])
-        df = df.drop(columns=df.columns[5])
-        df = df.drop(columns=df.columns[1])
+        df.drop([1,2,5,6,10,11,12],axis='columns')
+        # df = df.drop(columns=df.columns[6])
+        # df = df.drop(columns=df.columns[10])
+        # df = df.drop(columns=df.columns[5])
+        # df = df.drop(columns=df.columns[1])
+        # df = df.drop(columns=df.columns[1])
+        # df = df.drop(columns=df.columns[6])
+        # df = df.drop(columns=df.columns[6])
         df = df.replace('\n''\t', '', regex=True)
 
         # 列のリネーム
@@ -195,8 +198,6 @@ def results():
         3: '就業場所', 
         4: '仕事の内容', 
         7: '就業時間', 
-        8: '休日', 
-        9: '年齢', 
         10: '求人番号' 
         })
 
@@ -207,9 +208,6 @@ def results():
         '仕事の内容',
         '賃金',
         '就業時間',
-        '休日',
-        '年齢',
-        '事業所名',
         '就業場所',
         'URL'
         ])
