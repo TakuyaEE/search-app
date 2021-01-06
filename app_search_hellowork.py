@@ -188,29 +188,28 @@ def results():
         df = df.drop(columns=df.columns[5])
         df = df.drop(columns=df.columns[1])
         df = df.drop(columns=df.columns[1])
-        df = df.drop(columns=df.columns[6])
-        df = df.drop(columns=df.columns[6])
+        # df = df.drop(columns=df.columns[6])
+        # df = df.drop(columns=df.columns[6])
         df = df.replace('\n''\t', '', regex=True)
 
         # 列のリネーム
-        df = df.rename(columns={
-        2: '事業所名', 
-        3: '就業場所', 
-        4: '仕事の内容', 
-        7: '就業時間', 
-        10: '求人番号' 
-        })
+        # df = df.rename(columns={ 
+        # 3: '就業場所', 
+        # 4: '仕事の内容', 
+        # 7: '就業時間', 
+        # 10: '求人番号' 
+        # })
 
         # 列の並び替え
-        df = df.reindex(columns=[
-        '求人番号',
-        '職種',
-        '仕事の内容',
-        '賃金',
-        '就業時間',
-        '就業場所',
-        'URL'
-        ])
+        # df = df.reindex(columns=[
+        # '求人番号',
+        # '職種',
+        # '仕事の内容',
+        # '賃金',
+        # '就業時間',
+        # '就業場所',
+        # 'URL'
+        # ])
         
         # CSVの保存
         csv_id = str(uuid.uuid4())
