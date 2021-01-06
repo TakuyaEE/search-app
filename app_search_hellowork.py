@@ -182,14 +182,14 @@ def results():
 
 
         # 不要な列,空白の削除
-        df.drop([1,3,5,6,8,8,11],axis='columns')
-        # df = df.drop(columns=df.columns[6])
-        # df = df.drop(columns=df.columns[10])
-        # df = df.drop(columns=df.columns[5])
-        # df = df.drop(columns=df.columns[1])
-        # df = df.drop(columns=df.columns[1])
-        # df = df.drop(columns=df.columns[1])
-        # df = df.drop(columns=df.columns[5])
+        # df.drop([1,3,5,6,8,9,11],axis='columns')
+        df = df.drop(columns=df.columns[1])
+        df = df.drop(columns=df.columns[2])
+        df = df.drop(columns=df.columns[3])
+        df = df.drop(columns=df.columns[2])
+        df = df.drop(columns=df.columns[3])
+        df = df.drop(columns=df.columns[3])
+        df = df.drop(columns=df.columns[5])
         df = df.replace('\n''\t', '', regex=True)
 
         # 列のリネーム
@@ -219,7 +219,7 @@ def results():
         csv_path = './output/{}.csv'.format(csv_id)
 
         # tableに出力するためにURLをリンク
-        # df = df.drop(columns=df.columns[9])
+        df = df.drop(columns=df.columns[7])
         df_values = df.values.tolist()
         i = 0
         for df_value in df_values:
