@@ -182,11 +182,10 @@ def results():
 
 
         # 不要な列,空白の削除
-        # df.drop([1,3,5,6,8,9,11],axis='columns')
         df = df.drop(columns=df.columns[1])
         df = df.drop(columns=df.columns[2])
-        # df = df.drop(columns=df.columns[3])
-        # df = df.drop(columns=df.columns[2])
+        df = df.drop(columns=df.columns[3])
+        df = df.drop(columns=df.columns[3])
         # df = df.drop(columns=df.columns[3])
         # df = df.drop(columns=df.columns[3])
         # df = df.drop(columns=df.columns[5])
