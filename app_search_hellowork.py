@@ -191,7 +191,7 @@ def results():
         df = df.drop(columns=df.columns[5])
         df = df.replace('\n''\t', '', regex=True)
 
-        列のリネーム
+        # 列のリネーム
         df = df.rename(columns={ 
         3: '事業所名', 
         4: '仕事の内容',
@@ -200,7 +200,7 @@ def results():
         10: '求人番号' 
         })
 
-        列の並び替え
+        # 列の並び替え
         df = df.reindex(columns=[
         '求人番号',
         '職種',
