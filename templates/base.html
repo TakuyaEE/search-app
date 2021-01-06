@@ -1,38 +1,43 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>求人情報検索</title>
+
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/overwrite.css') }}">
+    <title>ハローワーク求人情報検索</title>
+ 
     {% block head %}{% endblock %}
-</head>
+    </head>
 
-<body style="background-color:#efefef;">    
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    
-    <nav class="navbar-expand-md navbar navbar-light fixed-top" style="background-color:#6d7993">
-        <a class="navbar-brand font-weight-bold" href="/" style="color:white;">ポートフォリオ</a>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav mr-auto">
+    <body style="background-color:#efefef;">    
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+        
+        <nav class="navbar-expand-md navbar navbar-light fixed-top" style="background-color:#6d7993">
+            <a class="navbar-brand font-weight-bold" href="/" style="color:white;">ポートフォリオ</a>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/hellowork" style="color:white;">ハローワーク求人情報検索</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/inquiry" style="color:white;">バグ報告/お問い合わせ</a>
+                    </li>
+                    <!--<li class="nav-item active">
+                        <a class="nav-link" href="/technology" style="color:white;">技術選定について</a>
+                    </li>-->
+                    <li class="nav-item active">
+                        <a class="nav-link" href="https://github.com/TakuyaEE/search-app" style="color:white;">GitHub</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 
-                <li class="nav-item active">
-                    <a class="nav-link" href="/hellowork" style="color:white;">ハローワーク求人情報検索</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="/inquiry" style="color:white;">バグ報告/お問い合わせ</a>
-                </li>
-                <!--<li class="nav-item active">
-                    <a class="nav-link" href="/technology" style="color:white;">技術選定について</a>
-                </li>-->
-                <li class="nav-item active">
-                    <a class="nav-link" href="https://github.com/TakuyaEE/search-app" style="color:white;">GitHub</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    {% block body %}{% endblock %}
+        {% block body %}{% endblock %}
+    </body>
 </html>

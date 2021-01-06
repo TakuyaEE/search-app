@@ -1,12 +1,21 @@
 {% extends 'base.html' %}
 
 {% block body %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/loaders.min.css') }}">
 <script type=text/javascript src="{{ url_for('static', filename='js/hellowork.js') }}"></script>
 <div class="font-weight-bold lead text-center d-none" id="information"> 
     <p class="pt-5 mt-5">検索中です</P>
     <p>自動で検索結果ページが開かれるので、そのままおまちください。</P>
     <p>※検索条件によって時間がかかることがあります。</P>
-    <p class="py-3 h6">ブロック崩し 左：← 右：→</P>
+    <div class="loader-inner pacman">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        </div><span class="tooltip">
+        <p>pacman</p></span>
+    </div>
 </div>
 
 <div class="container">
