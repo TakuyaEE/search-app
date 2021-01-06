@@ -182,14 +182,14 @@ def results():
 
 
         # 不要な列,空白の削除
-        df.drop([1,2,5,6,10,11,12],axis='columns')
-        # df = df.drop(columns=df.columns[6])
-        # df = df.drop(columns=df.columns[10])
-        # df = df.drop(columns=df.columns[5])
-        # df = df.drop(columns=df.columns[1])
-        # df = df.drop(columns=df.columns[1])
-        # df = df.drop(columns=df.columns[6])
-        # df = df.drop(columns=df.columns[6])
+        # df.drop([1,2,5,6,10,11,12],axis='columns')
+        df = df.drop(columns=df.columns[6])
+        df = df.drop(columns=df.columns[10])
+        df = df.drop(columns=df.columns[5])
+        df = df.drop(columns=df.columns[1])
+        df = df.drop(columns=df.columns[1])
+        df = df.drop(columns=df.columns[6])
+        df = df.drop(columns=df.columns[6])
         df = df.replace('\n''\t', '', regex=True)
 
         # 列のリネーム
