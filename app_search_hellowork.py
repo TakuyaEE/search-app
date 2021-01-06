@@ -185,10 +185,10 @@ def results():
         df = df.drop(columns=df.columns[1])
         df = df.drop(columns=df.columns[2])
         df = df.drop(columns=df.columns[3])
-        # df = df.drop(columns=df.columns[3])
-        # df = df.drop(columns=df.columns[4])
-        # df = df.drop(columns=df.columns[4])
-        # df = df.drop(columns=df.columns[4])
+        df = df.drop(columns=df.columns[3])
+        df = df.drop(columns=df.columns[3])
+        df = df.drop(columns=df.columns[4])
+        df = df.drop(columns=df.columns[6])
         df = df.replace('\n''\t', '', regex=True)
 
         # 列のリネーム
@@ -218,7 +218,7 @@ def results():
         csv_path = './output/{}.csv'.format(csv_id)
 
         # tableに出力するためにURLをリンク
-        df = df.drop(columns=df.columns[6])
+        # df = df.drop(columns=df.columns[6])
         df_values = df.values.tolist()
         i = 0
         for df_value in df_values:
