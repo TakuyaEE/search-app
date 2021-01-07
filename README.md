@@ -18,6 +18,10 @@
     - LineMessageAPI               linebot
     - モジュール分割                Blueprints
     - ユニークID生成                uuid
+- FIREBOX(予定)
+    - ユーザー認証に使用予定
+- DB(予定)
+    - FIREBOX or RDS を使用予定
 - フロントエンド
     - CSS,JavaScriptフレームワーク  bootstrap, jQuery
 - インフラ

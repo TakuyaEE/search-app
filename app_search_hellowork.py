@@ -227,7 +227,7 @@ def results():
             i += 1
 
         # return render_template('results.html', df_values = df_values, csv_path = csv_path, today = today)
-        return render_template('results.html', df_values = df_values, today = today)
+        return render_template('results.html', df_values = df_values)
 
     else:
         return redirect('hellowork.html')
