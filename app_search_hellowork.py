@@ -212,11 +212,11 @@ def results():
         ])
         
         # CSVの保存
-        csv_id = str(uuid.uuid4())
-        now = dt.datetime.now()
-        today = now.strftime('%Y%m%d')
-        df.to_csv('./output/{}.csv'.format(csv_id), encoding='utf_8_sig',index=False)
-        csv_path = './output/{}.csv'.format(csv_id)
+        # csv_id = str(uuid.uuid4())
+        # now = dt.datetime.now()
+        # today = now.strftime('%Y%m%d')
+        # df.to_csv('./output/{}.csv'.format(csv_id), encoding='utf_8_sig',index=False)
+        # csv_path = './output/{}.csv'.format(csv_id)
 
         # tableに出力するためにURLをリンク
         df = df.drop(columns=df.columns[6])
@@ -226,7 +226,8 @@ def results():
             df_values[i][0] = '<a href="' + url_list[i] + '">' + df_values[i][0]  + '</a>'
             i += 1
 
-        return render_template('results.html', df_values = df_values, csv_path = csv_path, today = today)
+        # return render_template('results.html', df_values = df_values, csv_path = csv_path, today = today)
+        return render_template('results.html', df_values = df_values, today = today)
 
     else:
         return redirect('hellowork.html')
