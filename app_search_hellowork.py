@@ -182,21 +182,20 @@ def results():
 
 
         # 不要な列,空白の削除
-        df.drop([1,2,5,6,10,11,12],axis='columns')
-        # df = df.drop(columns=df.columns[6])
-        # df = df.drop(columns=df.columns[10])
-        # df = df.drop(columns=df.columns[5])
-        # df = df.drop(columns=df.columns[1])
-        # df = df.drop(columns=df.columns[1])
-        # df = df.drop(columns=df.columns[6])
-        # df = df.drop(columns=df.columns[6])
+        df = df.drop(columns=df.columns[1])
+        df = df.drop(columns=df.columns[2])
+        df = df.drop(columns=df.columns[3])
+        df = df.drop(columns=df.columns[3])
+        df = df.drop(columns=df.columns[4])
+        df = df.drop(columns=df.columns[4])
+        df = df.drop(columns=df.columns[5])
         df = df.replace('\n''\t', '', regex=True)
 
         # 列のリネーム
-        df = df.rename(columns={
+        df = df.rename(columns={ 
         2: '事業所名', 
-        3: '就業場所', 
-        4: '仕事の内容', 
+        4: '仕事の内容',
+        6: '賃金', 
         7: '就業時間', 
         10: '求人番号' 
         })
@@ -208,7 +207,7 @@ def results():
         '仕事の内容',
         '賃金',
         '就業時間',
-        '就業場所',
+        '事業所名',
         'URL'
         ])
         
@@ -220,7 +219,7 @@ def results():
         csv_path = './output/{}.csv'.format(csv_id)
 
         # tableに出力するためにURLをリンク
-        df = df.drop(columns=df.columns[9])
+        df = df.drop(columns=df.columns[6])
         df_values = df.values.tolist()
         i = 0
         for df_value in df_values:

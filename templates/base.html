@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <link rel="icon" href="{{ url_for('static', filename='image/favicon.ico') }}">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/overwrite.css') }}">
@@ -19,8 +19,14 @@
         <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
         
         <nav class="navbar-expand-md navbar navbar-light fixed-top" style="background-color:#6d7993">
-            <a class="navbar-brand font-weight-bold" href="/" style="color:white;">ポートフォリオ</a>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
+            <a class="navbar-brand font-weight-bold" href="/" style="color:white;">
+                <!--<img src="{{ url_for('static', filename='image/logo.png') }}"  alt="ポートフォリオ">-->
+                ポートフォリオ
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#responsiveNav" aria-controls="responsiveNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="responsiveNav">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
                         <a class="nav-link" href="/hellowork" style="color:white;">ハローワーク求人情報検索</a>
@@ -36,6 +42,7 @@
                     </li>
                 </ul>
             </div>
+        
         </nav>
 
         {% block body %}{% endblock %}

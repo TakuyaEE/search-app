@@ -1,26 +1,20 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/loaders.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/loading.css') }}">
 <script type=text/javascript src="{{ url_for('static', filename='js/hellowork.js') }}"></script>
-<div class="font-weight-bold lead text-center d-none" id="information"> 
+<div class="font-weight-bold lead text-center d-none" style="margin-top:110px;" id="information"> 
     <p class="pt-5 mt-5">検索中です</P>
     <p>自動で検索結果ページが開かれるので、そのままおまちください。</P>
     <p>※検索条件によって時間がかかることがあります。</P>
-    <div class="loader-inner pacman">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        </div><span class="tooltip">
-        <p>pacman</p></span>
-    </div>
+    <div class="loader">Loading...</div>
+
+
 </div>
 
 <div class="container">
     <form action="/results" method="POST" name="form" onsubmit="conditions_send()">
-        <div class="font-weight-bold pt-5 pb-2 mt-5 text-center">
+        <div class="font-weight-bold pt-5 text-center" style="margin-top:60px;">
             <h2>ハローワーク求人情報検索</h2>
             <p class="lead">検索条件を入力してください</p>
         </div>

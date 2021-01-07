@@ -2,13 +2,13 @@
 
 {% block body %}
 	
-	<div class="pt-5">
+	<div class="pt-5" style="margin-top:30px;">
 		<h2 class="float-left m-4">検索結果</h2>
 	<!--	<a href="{{csv_path}}" download="ハローワーク求人情報_{{today}}.csv" type="button" class="btn float-right m-4" style="background-color:#9099a2;color:white;">CSVでダウンロード</a>
 	-->
 	</div>
 
-	<div class="d-block table-responsive p-3">
+	<div class="d-block table-responsive px-3 pb-4">
 		<table class="table table-bordered table-hover table-sm table-striped tablesorter" id="myTable">
 			<thead>
 				<tr>
@@ -17,7 +17,7 @@
 					<th data-sorter="false">仕事の内容</th>
 					<th>賃金</th>
 					<th data-sorter="false">就業時間</th>
-					<th data-sorter="false">就業場所</th>
+					<th data-sorter="false">事業所名</th>
 				</tr>
 			</thead> 
 			<tbody class="table_body">
