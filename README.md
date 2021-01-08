@@ -6,6 +6,28 @@
 受講中の職業訓練校のクラスメイトをターゲットに設定し、フィードバックを受けながら機能を追加していきたいと思っております。
 
 
+## 使用言語等
+- Python 3.8.6
+    - webフレームワーク             flask
+    - ブラウザ操作＆スクレイピング   selenium, BeautifulSoup4
+    - データ処理                    pandas
+    - LineMessageAPI               linebot
+    - モジュール分割                Blueprints
+    - ユニークID生成                uuid
+- Firebase(予定)
+    - ユーザー認証に使用予定
+- DB(予定)
+    - Firebase or RDS を使用予定
+- フロントエンド
+    - CSS,JavaScriptフレームワーク  bootstrap(honoka), jQuery
+- インフラ
+    - heroku(12/26~1/5)
+        - 30秒でリクエストがタイムアウトする仕様がアプリと合わなかったため
+    - AWS Elastic Beanstalk(1/5~)
+    - AWS ECS + CircleCI(予定)
+        - docker化してCircleCIでの自動テスト・デプロイを実装予定  
+  
+  
 ## 機能説明
 - ハローワーク求人情報検索
     - フォームから受け取った値をPOSTで受け取る
@@ -24,6 +46,7 @@
 - ユーザー情報登録・認証（作成中）
     - Firebaseを使用予定
     - ユーザー情報とDBを紐づけ、検索履歴を保存、閲覧可能にする
+
 
 ## 技術選定の際に考えたこと、意識して使用した技術
 - このアプリを作った理由
@@ -64,28 +87,6 @@
     -  開発を一人で進めるうえで、「Django」ではオーバースペックに感じたからです。<br>
     機能が少ないことも、学習コストが低く小回りが利くという面でデメリットよりもメリットを大きく感じました。<br>
     また、機能が少ないことでライブラリに頼らざるを得ず、ライブラリを自分で選定し、設定することは学習効果が大きいと考えました。
-
-## 使用言語等
-- Python
-    - webフレームワーク             flask
-    - ブラウザ操作＆スクレイピング   selenium, BeautifulSoup4
-    - データ処理                    pandas
-    - LineMessageAPI               linebot
-    - モジュール分割                Blueprints
-    - ユニークID生成                uuid
-- Firebase(予定)
-    - ユーザー認証に使用予定
-- DB(予定)
-    - Firebase or RDS を使用予定
-- フロントエンド
-    - CSS,JavaScriptフレームワーク  bootstrap, jQuery
-- インフラ
-    - heroku(12/26~1/5)
-        - 30秒でリクエストがタイムアウトする仕様がアプリと合わなかったため
-    - AWS Elastic Beanstalk(1/5~)
-    - AWS ECS + CircleCI(予定)
-        - docker化してCircleCIでの自動テスト・デプロイを実装予定
-
 
 
 ## ディレクトリ構成  
