@@ -29,10 +29,6 @@ def hellowork():
 def inquiry():
     return render_template('inquiry.html')
 
-# @app.route('/technology')
-# def technology():
-#     return render_template('technology.html')
-
 @app.errorhandler(500)
 def internal_server_error_html(error):
     return render_template('no_result.html'), 500
