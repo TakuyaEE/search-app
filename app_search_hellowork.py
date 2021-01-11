@@ -10,6 +10,13 @@ import csv
 import pandas as pd
 import datetime as dt
 import uuid
+import pyrebase
+import json
+
+# firebaseConfigの読み込み
+with open("firebaseConfig.json") as f:
+    firebaseConfig = json.loads(f.read())
+firebase = pyrebase.initialize_app(firebaseConfig)
 
 
 search_hellowork = Blueprint('app_search_hellowork', __name__)
@@ -212,11 +219,15 @@ def results():
         ])
         
         # CSVの保存
-        # csv_id = str(uuid.uuid4())
-        # now = dt.datetime.now()
-        # today = now.strftime('%Y%m%d')
-        # df.to_csv('./output/{}.csv'.format(csv_id), encoding='utf_8_sig',index=False)
-        # csv_path = './output/{}.csv'.format(csv_id)
+        csv_id = str(uuid.uuid4())
+        now = dt.datetime.now()
+        today = now.strftime('%Y%m%d')
+        df.to_csv('./output/{}.csv'.format(csv_id), encoding='utf_8_sig',index=False)
+
+        csv_path = './output/{}.csv'.format(csv_id)
+        storage = firebase.storage()
+        storage.child('csv_output/{}.csv'.format(csv_id)).put(csv_path)  # どこにアップロードしたいかのパス指定もできます
+        csv_url = storage.child('csv_output/{}.csv'.format(csv_id)).get_url(token=None)  # ダウンロードURLの取得
 
         # tableに出力するためにURLをリンク
         df = df.drop(columns=df.columns[6])
@@ -226,8 +237,8 @@ def results():
             df_values[i][0] = '<a href="' + url_list[i] + '">' + df_values[i][0]  + '</a>'
             i += 1
 
-        # return render_template('results.html', df_values = df_values, csv_path = csv_path, today = today)
-        return render_template('results.html', df_values = df_values)
+        return render_template('results.html', df_values = df_values, csv_url = csv_url, today = today)
+        # return render_template('results.html', df_values = df_values)
 
     else:
         return redirect('hellowork.html')
