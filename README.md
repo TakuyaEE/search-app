@@ -110,14 +110,4 @@ search-app
 │  ├─css　スタイルシート  
 │  └─js　スクリプトファイル  
 │  
-└─templates html  
-│  ├─base.html  
-│  ├─hellowork.html  
-│  ├─index.html  
-│  ├─inquiry.html  
-│  ├─inquiry_send.html  
-│  ├─no_result.html  
-│  ├─results.html  
-│  ├─search.html  
-│  └─technology.html  
-
+└─templates htmlファイル
