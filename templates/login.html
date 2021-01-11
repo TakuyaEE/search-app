@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="pt-5" style="margin-top:30px;">
+    <h1>メールアドレスとパスワードを入力してください</h1>
+    <form action='login' method='POST'>
+        <input type='text' name='email' id='email' placeholder='email'/>
+        <br/>
+        <input type='password' name='password' id='password' placeholder='password'/>
+        <br/>
+        <input type='submit' name='submit'/>
+    </form>
+    <h2 style="color:orangered;">{{msg}}</h2>
+</div>
+
+{% endblock %}
