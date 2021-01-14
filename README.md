@@ -14,16 +14,14 @@
     - LineMessageAPI               linebot
     - モジュール分割                Blueprints
     - ユニークID生成                uuid
-- Firebase(予定)
-    - ユーザー認証に使用予定
-- DB(予定)
-    - Firebase or RDS を使用予定
+- Firebase
+    - ユーザー認証、ストレージ、DBを使用
 - フロントエンド
     - CSS,JavaScriptフレームワーク  bootstrap(honoka), jQuery
 - インフラ
     - heroku(12/26~1/5)
         - 30秒でリクエストがタイムアウトする仕様がアプリと合わなかったため
-    - AWS Elastic Beanstalk(1/5~)
+    - AWS Elastic Beanstalk,Route53(1/5~)
     - AWS ECS + CircleCI(予定)
         - docker化してCircleCIでの自動テスト・デプロイを実装予定  
   
