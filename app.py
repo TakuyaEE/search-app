@@ -5,6 +5,7 @@ import os, json
 
 from app_inquiry import inquiry
 from app_search_hellowork import search_hellowork
+# from app_search_shigotonavi import search_shigotonavi
 
 # firebaseConfigの読み込み
 with open("firebaseConfig.json") as f:
@@ -15,6 +16,7 @@ auth = firebase.auth()
 app = Flask(__name__)
 
 # 別モジュールをblueprintで呼び出し
+# app.register_blueprint(search_shigotonavi)
 app.register_blueprint(search_hellowork)
 app.register_blueprint(inquiry)
 
@@ -28,6 +30,10 @@ def index():
 @app.route('/hellowork')
 def hellowork():
     return render_template('hellowork.html')
+
+# @app.route('/shigotonavi')
+# def shigotonavi():
+#     return render_template('shigotonavi.html')
 
 @app.route('/inquiry')
 def inquiry():

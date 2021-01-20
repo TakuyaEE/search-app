@@ -1,0 +1,245 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/loading.css') }}">
+<script type=text/javascript src="{{ url_for('static', filename='js/hellowork.js') }}"></script>
+<div class="font-weight-bold lead text-center d-none" style="margin-top:110px;" id="information"> 
+    <p class="pt-5 mt-5">検索中です</P>
+    <p>自動で検索結果ページが開かれるので、そのままおまちください。</P>
+    <p>※検索条件によって時間がかかることがあります。</P>
+    <div class="loader">Loading...</div>
+
+
+</div>
+
+<div class="container">
+    <form action="/results" method="POST" name="form" onsubmit="conditions_send()">
+        <div class="font-weight-bold pt-5 text-center" style="margin-top:60px;">
+            <h2>仕事ナビ求人情報検索</h2>
+            <p class="lead">検索条件を入力してください</p>
+        </div>
+        <div>
+            <hr class="mb-3">
+
+            <hr class="mb-3">
+                <h6 class="mt-3 font-weight-bold">就業場所 <span class='badge badge-danger ml-2'>必須</span></h6>
+            <div class="form-group">
+                <select name="prefecture" multiple class="form-control select3" id="exampleFormControlSelect2" required>
+                    <option value="" selected="">全国</option>
+                    <option value="001">北海道</option>
+                    <option value="002">青森
+                    <option value="003">岩手
+                    <option value="004">宮城
+                    <option value="005">秋田
+                    <option value="006">山形
+                    <option value="007">福島
+                    <option value="008">茨城
+                    <option value="009">栃木
+                    <option value="010">群馬
+                    <option value="011">埼玉
+                    <option value="012">千葉
+                    <option value="013">東京
+                    <option value="014">神奈川
+                    <option value="015">山梨
+                    <option value="016">長野
+                    <option value="017">岐阜
+                    <option value="018">新潟
+                    <option value="019">富山
+                    <option value="020">石川
+                    <option value="021">福井
+                    <option value="022">静岡
+                    <option value="023">愛知
+                    <option value="024">三重
+                    <option value="025">滋賀
+                    <option value="026">奈良
+                    <option value="027">和歌山
+                    <option value="028">京都
+                    <option value="029">大阪
+                    <option value="030">兵庫
+                    <option value="031">鳥取
+                    <option value="032">島根
+                    <option value="033">岡山
+                    <option value="034">広島
+                    <option value="035">山口
+                    <option value="036">徳島
+                    <option value="037">香川
+                    <option value="038">愛媛
+                    <option value="039">高知
+                    <option value="040">福岡
+                    <option value="041">佐賀
+                    <option value="042">長崎
+                    <option value="043">熊本
+                    <option value="044">大分
+                    <option value="045">宮崎
+                    <option value="046">鹿児島
+                    <option value="047">沖縄
+                    <option value="zzz">海外
+                        
+                </select>
+            </div>
+            
+            <h6 class="mt-3 font-weight-bold">職業分類　<span class="font-weight-normal">(コントロールを押しながら選択すると3つまで選択できます)</span><span class='badge badge-danger ml-2'>必須</span></h6>
+            <div class="form-group">
+                <select name="classfication" multiple class="form-control select3" id="exampleFormControlSelect2" required>
+                    <option value="0305000">プロジェクトマネージャー／リーダー
+                    <option value="0301000">システムエンジニア
+                    <option value="0310000">システムエンジニア（業務系／ERP）
+                    <option value="0311000">システムエンジニア(WEB／モバイル系）
+                    <option value="0312000">システムエンジニア(制御／組込系）
+                    <option value="0302000">プログラマ
+                    <option value="0313000">プログラマー（業務系／ERP）
+                    <option value="0314000">プログラマー(WEB／モバイル系）
+                    <option value="0315000">プログラマー(制御／組込系）
+                    <option value="0303000">サポート・運用保守
+                    <option value="0308000">社内ＳＥ
+                    <option value="0307000">評価・テスト
+                    <option value="0306000">システムコンサルタント・プリセールス
+                    <option value="0309000">PMO
+                    <option value="0304000">インストラクター・講師
+                    <option value="0399000">その他ソフトウェア関連職      
+                </select>
+            </div>
+
+            <hr class="mb-3">
+            <h6 class="mt-3 font-weight-bold">フリーワード　<span class="font-weight-normal">（複数ある場合は「スペース」で区切って入力してください ※アルファベットも全角で入力してください)</span></h6>
+            <div class="form-group">
+                <input type="text" name="free_word" class="form-control" id="exampleFormControlInput1" placeholder="例）未経験　Ｊａｖａ" value="">
+            </div>
+            <hr class="mb-3">
+        </div>
+        <button class="mb-3 btn  btn-lg btn-block" style="background-color:#9099a2;color:white;" type="submit">検索</button>
+    </form>
+</div>
+
+      
+       <!-- 群馬
+              <div class="col-m-md-auto">                  
+                  <label for="exampleFormControlSelect2">群馬県</label>
+                  <select name="place" multiple class="form-control select5 gumma" id="exampleFormControlSelect2">
+                      <option value="10201">前橋市</option>
+                      <option value="10202">高崎市</option>
+                      <option value="10203">桐生市</option>
+                      <option value="10204">伊勢崎市</option>
+                      <option value="10205">太田市</option>
+                      <option value="10206">沼田市</option>
+                      <option value="10207">館林市</option>
+                      <option value="10208">渋川市</option>
+                      <option value="10209">藤岡市</option>
+                      <option value="10210">富岡市</option>
+                      <option value="10211">安中市</option>
+                      <option value="10212">みどり市</option>
+                      <option value="10344">北群馬郡榛東村</option>
+                      <option value="10345">北群馬郡吉岡町</option>
+                      <option value="10366">多野郡上野村</option>
+                      <option value="10367">多野郡神流町</option>
+                      <option value="10382">甘楽郡下仁田町</option>
+                      <option value="10383">甘楽郡南牧村</option>
+                      <option value="10384">甘楽郡甘楽町</option>
+                      <option value="10421">吾妻郡中之条町</option>
+                      <option value="10424">吾妻郡長野原町</option>
+                      <option value="10425">吾妻郡嬬恋村</option>
+                      <option value="10426">吾妻郡草津町</option>
+                      <option value="10428">吾妻郡高山村</option>
+                      <option value="10429">吾妻郡東吾妻町</option>
+                      <option value="10443">利根郡片品村</option>
+                      <option value="10444">利根郡川場村</option>
+                      <option value="10448">利根郡昭和村</option>
+                      <option value="10449">利根郡みなかみ町</option>
+                      <option value="10464">佐波郡玉村町</option>
+                      <option value="10521">邑楽郡板倉町</option>
+                      <option value="10522">邑楽郡明和町</option>
+                      <option value="10523">邑楽郡千代田町</option>
+                      <option value="10524">邑楽郡大泉町</option>
+                      <option value="10525">邑楽郡邑楽町</option>
+                  </select>
+              </div>
+            </div>
+        -->
+
+<script>
+    // ほかの都道府県を選択中 or 5つ以上市区町村を選択中、選択不可に
+    $('.select5').change(function() {
+        var count = $(".select5 option:selected").length;
+        var not = $(".select5 option").not(":selected");
+
+        // TODO 関数に入れたい
+        var ibaraki = $(".ibaraki option:selected").length;
+        var ibaraki_not = $(".ibaraki option").not(":selected");
+        var tokyo = $(".tokyo option:selected").length;
+        var tokyo_not = $(".tokyo option").not(":selected");
+        var chiba = $(".chiba option:selected").length;
+        var chiba_not = $(".chiba option").not(":selected");
+        var saitama = $(".saitama option:selected").length;
+        var saitama_not = $(".saitama option").not(":selected");
+        var kanagawa = $(".kanagawa option:selected").length;
+        var kanagawa_not = $(".kanagawa option").not(":selected");
+        var tochigi = $(".tochigi option:selected").length;
+        var tochigi_not = $(".tochigi option").not(":selected");
+
+        // let prefList = [ibaraki, tokyo, chiba, saitama, kanagawa, tochigi];
+        // prefListCount = 1;
+        // for(let pref in prefList) {
+        //     var pref = $("." + pref + "option:selected").length;
+        //     var prefListCount = $("." + pref + "option").not(":selected");
+        //     prefListCount++;
+        // }
+
+
+        if(count >= 5) {
+            not.attr("disabled",true);
+        }else if (ibaraki > 0){
+            tokyo_not.attr("disabled",true);
+            chiba_not.attr("disabled",true);
+            saitama_not.attr("disabled",true);
+            kanagawa_not.attr("disabled",true);
+            tochigi_not.attr("disabled",true);
+        }else if (tokyo > 0){
+            ibaraki.attr("disabled",true);
+            chiba_not.attr("disabled",true);
+            saitama_not.attr("disabled",true);
+            kanagawa_not.attr("disabled",true);
+            tochigi_not.attr("disabled",true);
+        }else if (chiba > 0){
+            ibaraki.attr("disabled",true);
+            tokyo_not.attr("disabled",true);
+            saitama_not.attr("disabled",true);
+            kanagawa_not.attr("disabled",true);
+            tochigi_not.attr("disabled",true);
+        }else if (saitama > 0){
+            ibaraki.attr("disabled",true);
+            tokyo_not.attr("disabled",true);
+            chiba_not.attr("disabled",true);
+            kanagawa_not.attr("disabled",true);
+            tochigi_not.attr("disabled",true);
+        }else if (kanagawa > 0){
+            ibaraki.attr("disabled",true);
+            tokyo_not.attr("disabled",true);
+            chiba_not.attr("disabled",true);
+            saitama_not.attr("disabled",true);
+            tochigi_not.attr("disabled",true);
+        }else if (tochigi > 0){
+            ibaraki.attr("disabled",true);
+            tokyo_not.attr("disabled",true);
+            chiba_not.attr("disabled",true);
+            saitama_not.attr("disabled",true);
+            kanagawa_not.attr("disabled",true);
+        }else{
+            not.attr("disabled",false);
+        }
+    });
+
+
+    // 職業選択3つ以上選択中、選択不可に
+    $('.select3').change(function() {
+        var count = $(".select3 option:selected").length;
+        var not = $('.select3 option').not(':selected');
+            if(count >= 3) {
+                not.attr("disabled",true);
+            }else{
+                not.attr("disabled",false);
+            }
+    });
+</script>
+ 
+
+{% endblock %}
