@@ -33,10 +33,10 @@ def results():
         place_list.extend([0, 0, 0, 0, 0])
         pref = format(place_list[0], '05')[:2]
         
-        classfication_list = []
-        classfication_list = request.form.getlist('classfication')
-        classfication_list = list(map(str, classfication_list))
-        classfication_list.extend([0, 0, 0])
+        classification_list = []
+        classification_list = request.form.getlist('classification')
+        classification_list = list(map(str, classification_list))
+        classification_list.extend([0, 0, 0])
 
         free_word = request.form.get('free_word')
         free_word = free_word.replace(' ', '　')# 空白を全角に置換
@@ -86,24 +86,24 @@ def results():
 
         # 職業分類 
         # 入力箇所を選択するための変数を定義
-        classfication_list_count = 1
+        classification_list_count = 1
 
         # リスト内の数字が0以外の時 for文で入力
-        for classfication_list_num in classfication_list:
+        for classification_list_num in classification_list:
             # 小分類まで含めた5桁の時
-            if classfication_list_num != 0 and len(classfication_list_num) > 4 :
-                element = driver.find_element_by_id("ID_sKGYBRUIJo{}".format(classfication_list_count))
-                element.send_keys(classfication_list_num[0] + classfication_list_num[1] + classfication_list_num[2])
+            if classification_list_num != 0 and len(classification_list_num) > 4 :
+                element = driver.find_element_by_id("ID_sKGYBRUIJo{}".format(classification_list_count))
+                element.send_keys(classification_list_num[0] + classification_list_num[1] + classification_list_num[2])
                 time.sleep(1)
-                element = driver.find_element_by_id("ID_sKGYBRUIGe{}".format(classfication_list_count))
-                element.send_keys(classfication_list_num[3] + classfication_list_num[4])
-                classfication_list_count += 1
+                element = driver.find_element_by_id("ID_sKGYBRUIGe{}".format(classification_list_count))
+                element.send_keys(classification_list_num[3] + classification_list_num[4])
+                classification_list_count += 1
                 time.sleep(1)
             # 大分類のみの3桁の時
-            elif classfication_list_num != 0 :
-                element = driver.find_element_by_id("ID_sKGYBRUIJo{}".format(classfication_list_count))
-                element.send_keys(classfication_list_num)
-                classfication_list_count += 1
+            elif classification_list_num != 0 :
+                element = driver.find_element_by_id("ID_sKGYBRUIJo{}".format(classification_list_count))
+                element.send_keys(classification_list_num)
+                classification_list_count += 1
                 time.sleep(1)
 
 
