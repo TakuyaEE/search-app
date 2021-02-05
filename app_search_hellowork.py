@@ -164,12 +164,13 @@ def results():
                 # URL
                 case_url = case.find("div", attrs={"class": "flex jus_end"})
                 a_tag = case_url.select('a[href]')
-                href = map(str(a_tag.get('href')))
+                href_info = str(a_tag[0].get('href'))
+                href_detail = str(a_tag[1].get('href'))
                 # 求人票URL
-                information_url_list.append("https://www.hellowork.mhlw.go.jp/kensaku" + href[0].replace(".", "", 1))
+                information_url_list.append("https://www.hellowork.mhlw.go.jp/kensaku" + href_info.replace(".", "", 1))
                 # 詳細URL                
-                detail_url_list.append("https://www.hellowork.mhlw.go.jp/kensaku" + href[1].replace(".", "", 1))
-                case_list['詳細'] = "https://www.hellowork.mhlw.go.jp/kensaku" + href[1].replace(".", "", 1)
+                detail_url_list.append("https://www.hellowork.mhlw.go.jp/kensaku" + href_detail.replace(".", "", 1))
+                case_list['詳細'] = "https://www.hellowork.mhlw.go.jp/kensaku" + href_detail.replace(".", "", 1)
 
                 # リスト(data)に辞書(case_list)を追記する
                 data.append(case_list)
