@@ -130,7 +130,8 @@ def results():
         # データ収集
         # データを格納するリストを作成
         data = []
-        url_list = []
+        detail_url_list = []
+        information_url_list = []
 
 
         while True:
@@ -162,10 +163,13 @@ def results():
 
                 # URL
                 case_url = case.find("div", attrs={"class": "flex jus_end"})
-                a_tag = case_url.select_one('a[href]')
-                href = str(a_tag.get('href'))
-                url_list.append("https://www.hellowork.mhlw.go.jp/kensaku" + href.replace(".", "", 1))
-                case_list['URL'] = "https://www.hellowork.mhlw.go.jp/kensaku" + href.replace(".", "", 1)
+                a_tag = case_url.select('a[href]')
+                href = map(str(a_tag.get('href')))
+                # 求人票URL
+                information_url_list.append("https://www.hellowork.mhlw.go.jp/kensaku" + href[0].replace(".", "", 1))
+                # 詳細URL                
+                detail_url_list.append("https://www.hellowork.mhlw.go.jp/kensaku" + href[1].replace(".", "", 1))
+                case_list['詳細'] = "https://www.hellowork.mhlw.go.jp/kensaku" + href[1].replace(".", "", 1)
 
                 # リスト(data)に辞書(case_list)を追記する
                 data.append(case_list)
@@ -215,7 +219,7 @@ def results():
         '賃金',
         '就業時間',
         '事業所名',
-        'URL'
+        '詳細'
         ])
         
         # CSVの保存
@@ -234,7 +238,7 @@ def results():
         df_values = df.values.tolist()
         i = 0
         for df_value in df_values:
-            df_values[i][0] = '<a href="' + url_list[i] + '">' + df_values[i][0]  + '</a>'
+            df_values[i][0] = '<a href="' + detail_url_list[i] + '">' + df_values[i][0]  + '</a>'
             i += 1
 
         return render_template('results.html', df_values = df_values, csv_url = csv_url, today = today)
