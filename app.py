@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, Blueprint, abort, jsonify, session
 from flask_sqlalchemy import SQLAlchemy
 import pyrebase
-import os, json
+import os
+import json
 
 from app_inquiry import inquiry
 from app_search_hellowork import search_hellowork
@@ -27,6 +28,7 @@ app.register_blueprint(inquiry)
 def index():
     return render_template('hellowork.html')
 
+
 @app.route('/hellowork')
 def hellowork():
     return render_template('hellowork.html')
@@ -34,6 +36,7 @@ def hellowork():
 # @app.route('/shigotonavi')
 # def shigotonavi():
 #     return render_template('shigotonavi.html')
+
 
 @app.route('/inquiry')
 def inquiry():
@@ -65,6 +68,6 @@ def internal_server_error_html(error):
 
 
 if __name__ == "__main__":
-    # app.run()
-    port = int(os.getenv("PORT", 8000))
-    app.run(host="0.0.0.0", port=port)
+    app.run()
+    # port = int(os.getenv("PORT", 8000))
+    # app.run(host="0.0.0.0", port=port)

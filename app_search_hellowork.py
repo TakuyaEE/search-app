@@ -1,17 +1,18 @@
+import json
+import pyrebase
+import uuid
+import datetime as dt
+import pandas as pd
+import csv
+from bs4 import BeautifulSoup
+import time
 from flask import Flask, render_template, request, redirect, url_for, Blueprint
 from flask_sqlalchemy import SQLAlchemy
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.chrome.options import Options
-import chromedriver_binary
-import time
-from bs4 import BeautifulSoup
-import csv
-import pandas as pd
-import datetime as dt
-import uuid
-import pyrebase
-import json
+# import chromedriver_binary
+from webdriver_manager.chrome import ChromeDriverManager
 
 # firebaseConfigの読み込み
 with open("firebaseConfig.json") as f:
@@ -32,14 +33,14 @@ def results():
         place_list = list(map(int, place_list))
         place_list.extend([0, 0, 0, 0, 0])
         pref = format(place_list[0], '05')[:2]
-        
+
         classification_list = []
         classification_list = request.form.getlist('classification')
         classification_list = list(map(str, classification_list))
         classification_list.extend([0, 0, 0])
 
         free_word = request.form.get('free_word')
-        free_word = free_word.replace(' ', '　')# 空白を全角に置換
+        free_word = free_word.replace(' ', '　')  # 空白を全角に置換
 
         # 検索
         # ハローワーク求人情報検索ページ
@@ -49,7 +50,8 @@ def results():
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--no-sandbox')
         chrome_options.add_argument('--disable-dev-shm-usage')
-        driver = webdriver.Chrome(options=chrome_options)
+        driver = webdriver.Chrome(
+            ChromeDriverManager().install(), options=chrome_options)
         driver.get(HELLOWORK_URL)
         time.sleep(1)
 
@@ -57,12 +59,12 @@ def results():
         driver.find_element_by_id("ID_ippanCKBox1").click()
         time.sleep(1)
 
-        #年齢
+        # 年齢
         element = driver.find_element_by_id("ID_nenreiInput")
         element.send_keys(age)
         time.sleep(1)
 
-        #就業場所 都道府県
+        # 就業場所 都道府県
         element = driver.find_element_by_id("ID_tDFK1CmbBox")
         Select(element).select_by_value(pref)
         time.sleep(1)
@@ -77,35 +79,39 @@ def results():
         # リスト内の数字が0以外の時 for文で入力
         for place_list_num in place_list:
             if place_list_num > 0:
-                place_list_num = f'{place_list_num:05}' 
+                place_list_num = f'{place_list_num:05}'
                 Select(element).select_by_value(place_list_num)
-                
+
         time.sleep(1)
         driver.find_element_by_id("ID_ok").click()
         time.sleep(1)
 
-        # 職業分類 
+        # 職業分類
         # 入力箇所を選択するための変数を定義
         classification_list_count = 1
 
         # リスト内の数字が0以外の時 for文で入力
         for classification_list_num in classification_list:
             # 小分類まで含めた5桁の時
-            if classification_list_num != 0 and len(classification_list_num) > 4 :
-                element = driver.find_element_by_id("ID_sKGYBRUIJo{}".format(classification_list_count))
-                element.send_keys(classification_list_num[0] + classification_list_num[1] + classification_list_num[2])
+            if classification_list_num != 0 and len(classification_list_num) > 4:
+                element = driver.find_element_by_id(
+                    "ID_sKGYBRUIJo{}".format(classification_list_count))
+                element.send_keys(
+                    classification_list_num[0] + classification_list_num[1] + classification_list_num[2])
                 time.sleep(1)
-                element = driver.find_element_by_id("ID_sKGYBRUIGe{}".format(classification_list_count))
-                element.send_keys(classification_list_num[3] + classification_list_num[4])
+                element = driver.find_element_by_id(
+                    "ID_sKGYBRUIGe{}".format(classification_list_count))
+                element.send_keys(
+                    classification_list_num[3] + classification_list_num[4])
                 classification_list_count += 1
                 time.sleep(1)
             # 大分類のみの3桁の時
-            elif classification_list_num != 0 :
-                element = driver.find_element_by_id("ID_sKGYBRUIJo{}".format(classification_list_count))
+            elif classification_list_num != 0:
+                element = driver.find_element_by_id(
+                    "ID_sKGYBRUIJo{}".format(classification_list_count))
                 element.send_keys(classification_list_num)
                 classification_list_count += 1
                 time.sleep(1)
-
 
         # 雇用形態 正社員
         driver.find_element_by_id("ID_koyoFltmCKBox1").click()
@@ -133,7 +139,6 @@ def results():
         detail_url_list = []
         information_url_list = []
 
-
         while True:
             # HTMLを整形して求人を抜き出す
             source = driver.page_source
@@ -141,24 +146,27 @@ def results():
             cases = soup.find_all("table", attrs={"class": "kyujin"})
 
             for case in cases:
-                case_list = {} # 1件ごとに辞書を作成し、要素を格納する
+                case_list = {}  # 1件ごとに辞書を作成し、要素を格納する
 
                 # 職種
-                case_name = str(case.find("td", attrs={"class": "m13"}).text.strip())
+                case_name = str(
+                    case.find("td", attrs={"class": "m13"}).text.strip())
                 case_list['職種'] = case_name
 
                 # kyujin_bodyタグ内の各要素抜き出し
-                category_items = case.find_all("tr", attrs={"class": "border_new"})
+                category_items = case.find_all(
+                    "tr", attrs={"class": "border_new"})
 
                 # 各要素リスト化 賃金は例外的に処理する
-                for case_count,category_item in enumerate(category_items, 1):
+                for case_count, category_item in enumerate(category_items, 1):
                     if str(category_item) in "disp_inline_block width15em":
                         continue
                     category = str(category_item.find('div').text)
                     case_list[case_count] = category
 
                 # 賃金
-                category = category_items[5].find("div", attrs={"class": "disp_inline_block width15em"}).text
+                category = category_items[5].find(
+                    "div", attrs={"class": "disp_inline_block width15em"}).text
                 case_list['賃金'] = category
 
                 # URL
@@ -167,18 +175,22 @@ def results():
                 href_info = str(a_tag[0].get('href'))
                 href_detail = str(a_tag[1].get('href'))
                 # 求人票URL
-                information_url_list.append("https://www.hellowork.mhlw.go.jp/kensaku" + href_info.replace(".", "", 1))
-                # 詳細URL                
-                detail_url_list.append("https://www.hellowork.mhlw.go.jp/kensaku" + href_detail.replace(".", "", 1))
-                case_list['詳細'] = "https://www.hellowork.mhlw.go.jp/kensaku" + href_detail.replace(".", "", 1)
+                information_url_list.append(
+                    "https://www.hellowork.mhlw.go.jp/kensaku" + href_info.replace(".", "", 1))
+                # 詳細URL
+                detail_url_list.append(
+                    "https://www.hellowork.mhlw.go.jp/kensaku" + href_detail.replace(".", "", 1))
+                case_list['詳細'] = "https://www.hellowork.mhlw.go.jp/kensaku" + \
+                    href_detail.replace(".", "", 1)
 
                 # リスト(data)に辞書(case_list)を追記する
                 data.append(case_list)
 
             # 次へボタンを探す
-            next_btn = soup.find_all("input", attrs={'name': 'fwListNaviBtnNext'})
+            next_btn = soup.find_all(
+                "input", attrs={'name': 'fwListNaviBtnNext'})
 
-            # 次へボタンのタグがdisableされていなければ 
+            # 次へボタンのタグがdisableされていなければ
             if not 'disabled' in str(next_btn):
                 driver.find_element_by_xpath("//input[@value='次へ＞']").click()
 
@@ -187,11 +199,9 @@ def results():
                 driver.quit()
                 break
 
-
         # データ処理
         # リスト(data)をpandasのデータフレームに変換
         df = pd.DataFrame(data)
-
 
         # 不要な列,空白の削除
         df = df.drop(columns=df.columns[1])
@@ -204,45 +214,49 @@ def results():
         df = df.replace('\n''\t', '', regex=True)
 
         # 列のリネーム
-        df = df.rename(columns={ 
-        2: '事業所名', 
-        4: '仕事の内容',
-        6: '賃金', 
-        7: '就業時間', 
-        10: '求人番号' 
+        df = df.rename(columns={
+            2: '事業所名',
+            4: '仕事の内容',
+            6: '賃金',
+            7: '就業時間',
+            10: '求人番号'
         })
 
         # 列の並び替え
         df = df.reindex(columns=[
-        '求人番号',
-        '職種',
-        '仕事の内容',
-        '賃金',
-        '就業時間',
-        '事業所名',
-        '詳細'
+            '求人番号',
+            '職種',
+            '仕事の内容',
+            '賃金',
+            '就業時間',
+            '事業所名',
+            '詳細'
         ])
-        
+
         # CSVの保存
         csv_id = str(uuid.uuid4())
         now = dt.datetime.now()
         today = now.strftime('%Y%m%d')
-        df.to_csv('./output/{}.csv'.format(csv_id), encoding='utf_8_sig',index=False)
+        df.to_csv('./output/{}.csv'.format(csv_id),
+                  encoding='utf_8_sig', index=False)
 
         csv_path = './output/{}.csv'.format(csv_id)
         storage = firebase.storage()
-        storage.child('csv_output/{}.csv'.format(csv_id)).put(csv_path)  # どこにアップロードしたいかのパス指定もできます
-        csv_url = storage.child('csv_output/{}.csv'.format(csv_id)).get_url(token=None)  # ダウンロードURLの取得
+        storage.child('csv_output/{}.csv'.format(csv_id)
+                      ).put(csv_path)  # どこにアップロードしたいかのパス指定もできます
+        csv_url = storage.child(
+            'csv_output/{}.csv'.format(csv_id)).get_url(token=None)  # ダウンロードURLの取得
 
         # tableに出力するためにURLをリンク
         df = df.drop(columns=df.columns[6])
         df_values = df.values.tolist()
         i = 0
         for df_value in df_values:
-            df_values[i][0] = '<a href="' + detail_url_list[i] + '">' + df_values[i][0]  + '</a>'
+            df_values[i][0] = '<a href="' + detail_url_list[i] + \
+                '">' + df_values[i][0] + '</a>'
             i += 1
 
-        return render_template('results.html', df_values = df_values, csv_url = csv_url, today = today)
+        return render_template('results.html', df_values=df_values, csv_url=csv_url, today=today)
         # return render_template('results.html', df_values = df_values)
 
     else:
